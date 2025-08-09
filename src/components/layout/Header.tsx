@@ -280,13 +280,12 @@ const getEventBgColor = (type: string) => {
   }
 };
 
-// Push notification setup
+// Simplified push notification setup
 const usePushNotifications = () => {
   const [isSupported, setIsSupported] = useState(false);
   const [permission, setPermission] = useState<NotificationPermission>('default');
 
   useEffect(() => {
-    // Check if Notification API is supported
     const supported = 'Notification' in window;
     setIsSupported(supported);
     
@@ -299,9 +298,9 @@ const usePushNotifications = () => {
     if (!isSupported) return false;
     
     try {
-      const newPermission = await Notification.requestPermission();
-      setPermission(newPermission);
-      return newPermission === 'granted';
+      const permissionResult = await Notification.requestPermission();
+      setPermission(permissionResult);
+      return permissionResult === 'granted';
     } catch (error) {
       console.error('Error requesting notification permission:', error);
       return false;
@@ -311,20 +310,19 @@ const usePushNotifications = () => {
   const showNotification = useCallback((title: string, options?: NotificationOptions) => {
     if (!isSupported || permission !== 'granted') return;
     
-    try {
-      // Use the simpler Notification API
-      new Notification(title, {
-        ...options,
-        icon: DairyLogo,
-      });
-    } catch (error) {
-      console.error('Error showing notification:', error);
-    }
+    new Notification(title, {
+      ...options,
+      icon: DairyLogo,
+    });
   }, [isSupported, permission]);
 
-  return { isSupported, permission, requestPermission, showNotification };
+  return { 
+    isSupported, 
+    permission, 
+    requestPermission, 
+    showNotification 
+  };
 };
-
 
 const Header: React.FC = () => {
   const { user } = useAuth();
@@ -410,7 +408,7 @@ const Header: React.FC = () => {
     
     try {
       const response = await axios.get(
-        'https://nemmadi-dairy-farm.koyeb.app/api/notifications/', 
+        'http://localhost:8000/api/notifications/', 
         {
           headers: {
             Authorization: `Bearer ${user.token}`
@@ -444,7 +442,7 @@ const Header: React.FC = () => {
       }
 
       const response = await axios.get(
-        'https://nemmadi-dairy-farm.koyeb.app/api/upcoming-events/', 
+        'http://localhost:8000/api/upcoming-events/', 
         {
           headers: {
             Authorization: `Bearer ${user.token}`
