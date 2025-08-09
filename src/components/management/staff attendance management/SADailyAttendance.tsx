@@ -100,8 +100,8 @@ const SADailyAttendance: React.FC<SADailyAttendanceProps> = ({ query = '' }) => 
     
     try {
       const url = query 
-        ? `http://localhost:8000/api/sa-daily-attendance/${query}`
-        : 'http://localhost:8000/api/sa-daily-attendance/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/sa-daily-attendance/${query}`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/sa-daily-attendance/';
       
       const res = await fetch(url, {
         headers: { 
@@ -129,7 +129,7 @@ const SADailyAttendance: React.FC<SADailyAttendanceProps> = ({ query = '' }) => 
     if (!user?.token) return null;
     
     try {
-      const res = await fetch('http://localhost:8000/api/sa-daily-attendance/recognize/', {
+      const res = await fetch('https://nemmadi-dairy-farm.koyeb.app/api/sa-daily-attendance/recognize/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -341,7 +341,7 @@ const SADailyAttendance: React.FC<SADailyAttendanceProps> = ({ query = '' }) => 
     setCapturing(true);
     try {
       if (verificationData.type === 'in') {
-        const res = await fetch('http://localhost:8000/api/sa-daily-attendance/', {
+        const res = await fetch('https://nemmadi-dairy-farm.koyeb.app/api/sa-daily-attendance/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -368,11 +368,11 @@ const SADailyAttendance: React.FC<SADailyAttendanceProps> = ({ query = '' }) => 
         toast.success(`Attendance marked IN for ${newRecord.staff_name}`);
       } else if (verificationData.type === 'out') {
       const res = await fetch(
-        `http://localhost:8000/api/sa-daily-attendance/${verificationData.record.id}/mark-out/`,
+        `https://nemmadi-dairy-farm.koyeb.app/api/sa-daily-attendance/${verificationData.record.id}/mark-out/`,
         {
           method: 'PATCH',
           headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json',  
             Authorization: `Bearer ${user.token}`
           },
           body: JSON.stringify({ 
@@ -443,7 +443,7 @@ const SADailyAttendance: React.FC<SADailyAttendanceProps> = ({ query = '' }) => 
         return;
       }
       
-      let url = 'http://localhost:8000/api/sa-daily-attendance/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/sa-daily-attendance/export/';
       const params = new URLSearchParams();
       
       if (user.role === 'admin') {
