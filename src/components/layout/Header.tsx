@@ -280,12 +280,13 @@ const getEventBgColor = (type: string) => {
   }
 };
 
-// Simplified push notification setup
+// Push notification setup
 const usePushNotifications = () => {
   const [isSupported, setIsSupported] = useState(false);
   const [permission, setPermission] = useState<NotificationPermission>('default');
 
   useEffect(() => {
+    // Check if Notification API is supported
     const supported = 'Notification' in window;
     setIsSupported(supported);
     
@@ -298,9 +299,9 @@ const usePushNotifications = () => {
     if (!isSupported) return false;
     
     try {
-      const permissionResult = await Notification.requestPermission();
-      setPermission(permissionResult);
-      return permissionResult === 'granted';
+      const newPermission = await Notification.requestPermission();
+      setPermission(newPermission);
+      return newPermission === 'granted';
     } catch (error) {
       console.error('Error requesting notification permission:', error);
       return false;
@@ -310,19 +311,20 @@ const usePushNotifications = () => {
   const showNotification = useCallback((title: string, options?: NotificationOptions) => {
     if (!isSupported || permission !== 'granted') return;
     
-    new Notification(title, {
-      ...options,
-      icon: DairyLogo,
-    });
+    try {
+      // Use the simpler Notification API
+      new Notification(title, {
+        ...options,
+        icon: DairyLogo,
+      });
+    } catch (error) {
+      console.error('Error showing notification:', error);
+    }
   }, [isSupported, permission]);
 
-  return { 
-    isSupported, 
-    permission, 
-    requestPermission, 
-    showNotification 
-  };
+  return { isSupported, permission, requestPermission, showNotification };
 };
+
 
 const Header: React.FC = () => {
   const { user } = useAuth();
