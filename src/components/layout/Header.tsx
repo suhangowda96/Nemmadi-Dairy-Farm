@@ -286,8 +286,11 @@ const usePushNotifications = () => {
   const [permission, setPermission] = useState<NotificationPermission>('default');
 
   useEffect(() => {
-    setIsSupported('Notification' in window);
-    if ('Notification' in window) {
+    // Check if Notification API is supported
+    const supported = 'Notification' in window;
+    setIsSupported(supported);
+    
+    if (supported) {
       setPermission(Notification.permission);
     }
   }, []);
@@ -295,19 +298,28 @@ const usePushNotifications = () => {
   const requestPermission = useCallback(async () => {
     if (!isSupported) return false;
     
-    const newPermission = await Notification.requestPermission();
-    setPermission(newPermission);
-    return newPermission === 'granted';
+    try {
+      const newPermission = await Notification.requestPermission();
+      setPermission(newPermission);
+      return newPermission === 'granted';
+    } catch (error) {
+      console.error('Error requesting notification permission:', error);
+      return false;
+    }
   }, [isSupported]);
 
   const showNotification = useCallback((title: string, options?: NotificationOptions) => {
     if (!isSupported || permission !== 'granted') return;
     
-    // Use the simpler Notification API
-    new Notification(title, {
-      ...options,
-      icon: DairyLogo,
-    });
+    try {
+      // Use the simpler Notification API
+      new Notification(title, {
+        ...options,
+        icon: DairyLogo,
+      });
+    } catch (error) {
+      console.error('Error showing notification:', error);
+    }
   }, [isSupported, permission]);
 
   return { isSupported, permission, requestPermission, showNotification };
