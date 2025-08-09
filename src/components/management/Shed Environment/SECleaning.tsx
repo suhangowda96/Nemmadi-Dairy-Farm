@@ -95,7 +95,7 @@ const SECleaning: React.FC<SECleaningProps> = ({ query = '' }) => {
         return;
       }
       
-      const url = `http://localhost:8000/api/se-cleaning/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/se-cleaning/${query}`;
       const response = await fetch(url, {
         headers: { 'Authorization': `Bearer ${user.token}` }
       });
@@ -153,8 +153,8 @@ const SECleaning: React.FC<SECleaningProps> = ({ query = '' }) => {
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/se-cleaning/${editingRecord.id}/`
-        : 'http://localhost:8000/api/se-cleaning/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/se-cleaning/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/se-cleaning/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -254,7 +254,7 @@ const SECleaning: React.FC<SECleaningProps> = ({ query = '' }) => {
         return;
       }
       
-      let url = 'http://localhost:8000/api/se-cleaning/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/se-cleaning/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) {
@@ -305,7 +305,7 @@ const SECleaning: React.FC<SECleaningProps> = ({ query = '' }) => {
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/se-cleaning/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/se-cleaning/${id}/`, {
           method: 'DELETE',
           headers: { 'Authorization': `Bearer ${user.token}` }
         });

@@ -73,7 +73,7 @@ const FTWeeklySummary: React.FC<FeedSummaryProps> = ({ query = '' }) => {
       if (endDate) params.append('end_date', formatDateForAPI(endDate));
       if (searchTerm) params.append('search', searchTerm);
       
-      let url = `http://localhost:8000/api/ft-weekly-summary/${query}`;
+      let url = `https://nemmadi-dairy-farm.koyeb.app/api/ft-weekly-summary/${query}`;
       if (params.toString()) url += `?${params.toString()}`;
       
       const response = await fetch(url, {
@@ -154,7 +154,7 @@ const FTWeeklySummary: React.FC<FeedSummaryProps> = ({ query = '' }) => {
         return;
       }
       
-      let url = 'http://localhost:8000/api/ft-weekly-summary/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/ft-weekly-summary/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) {

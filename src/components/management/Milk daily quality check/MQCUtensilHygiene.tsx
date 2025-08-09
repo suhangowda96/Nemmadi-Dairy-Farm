@@ -71,7 +71,7 @@ const MQCUtensilHygiene: React.FC<MQCUtensilHygieneProps> = ({ query = '' }) => 
         return;
       }
       
-      const url = `http://localhost:8000/api/mqc-utensil-hygiene/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/mqc-utensil-hygiene/${query}`;
       const response = await fetch(url, {
         headers: {
           'Authorization': `Bearer ${user.token}`
@@ -129,8 +129,8 @@ const MQCUtensilHygiene: React.FC<MQCUtensilHygieneProps> = ({ query = '' }) => 
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/mqc-utensil-hygiene/${editingRecord.id}/`
-        : 'http://localhost:8000/api/mqc-utensil-hygiene/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/mqc-utensil-hygiene/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/mqc-utensil-hygiene/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -224,7 +224,7 @@ const MQCUtensilHygiene: React.FC<MQCUtensilHygieneProps> = ({ query = '' }) => 
         return;
       }
         
-      let url = 'http://localhost:8000/api/mqc-utensil-hygiene/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/mqc-utensil-hygiene/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) {
@@ -277,7 +277,7 @@ const MQCUtensilHygiene: React.FC<MQCUtensilHygieneProps> = ({ query = '' }) => 
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/mqc-utensil-hygiene/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/mqc-utensil-hygiene/${id}/`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${user.token}`

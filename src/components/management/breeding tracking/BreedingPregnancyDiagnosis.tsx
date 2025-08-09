@@ -52,7 +52,7 @@ const BreedingPregnancyDiagnosis: React.FC<PregnancyDiagnosisProps> = ({ query =
           if (!user || !user.token) return;
           
           try {
-            const response = await fetch('http://localhost:8000/api/animals/', {
+            const response = await fetch('https://nemmadi-dairy-farm.koyeb.app/api/animals/', {
               headers: {
                 'Authorization': `Bearer ${user.token}`
               }
@@ -115,7 +115,7 @@ const BreedingPregnancyDiagnosis: React.FC<PregnancyDiagnosisProps> = ({ query =
         return;
       }
       
-      const url = `http://localhost:8000/api/pregnancy-diagnoses/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/pregnancy-diagnoses/${query}`;
       const response = await fetch(url, {
         headers: {
           'Authorization': `Bearer ${user.token}`
@@ -176,8 +176,8 @@ const BreedingPregnancyDiagnosis: React.FC<PregnancyDiagnosisProps> = ({ query =
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/pregnancy-diagnoses/${editingRecord.id}/`
-        : 'http://localhost:8000/api/pregnancy-diagnoses/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/pregnancy-diagnoses/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/pregnancy-diagnoses/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -267,7 +267,7 @@ const BreedingPregnancyDiagnosis: React.FC<PregnancyDiagnosisProps> = ({ query =
         return;
       }
       
-      let url = 'http://localhost:8000/api/pregnancy-diagnoses/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/pregnancy-diagnoses/export/';
       const params = new URLSearchParams();
       
       if (user.role === 'admin') {
@@ -319,7 +319,7 @@ const BreedingPregnancyDiagnosis: React.FC<PregnancyDiagnosisProps> = ({ query =
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/pregnancy-diagnoses/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/pregnancy-diagnoses/${id}/`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${user.token}`

@@ -120,7 +120,7 @@ const PVDeliveryInspection: React.FC<PVDeliveryInspectionProps> = ({ query = '' 
         return;
       }
       
-      const url = `http://localhost:8000/api/PVdelivery-inspections/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/PVdelivery-inspections/${query}`;
       const response = await fetch(url, {
         headers: {
           'Authorization': `Bearer ${user.token}`
@@ -194,7 +194,7 @@ const PVDeliveryInspection: React.FC<PVDeliveryInspectionProps> = ({ query = '' 
         action_taken: formData.action_taken || null
       };
 
-      const url = `http://localhost:8000/api/PVdelivery-inspections/${editingRecord?.id}/`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/PVdelivery-inspections/${editingRecord?.id}/`;
       const method = 'PUT';
       
       const response = await fetch(url, {

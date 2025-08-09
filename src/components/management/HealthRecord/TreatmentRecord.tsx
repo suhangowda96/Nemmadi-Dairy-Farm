@@ -55,7 +55,7 @@ const TreatmentRecord: React.FC<TreatmentRecordProps> = ({ query = '' }) => {
       if (!user || !user.token) return;
       
       try {
-        const response = await fetch('http://localhost:8000/api/animals/', {
+        const response = await fetch('https://nemmadi-dairy-farm.koyeb.app/api/animals/', {
           headers: {
             'Authorization': `Bearer ${user.token}`
           }
@@ -140,7 +140,7 @@ const TreatmentRecord: React.FC<TreatmentRecordProps> = ({ query = '' }) => {
         return;
       }
       
-      const url = `http://localhost:8000/api/treatment-records/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/treatment-records/${query}`;
       const response = await fetch(url, {
         headers: {
           'Authorization': `Bearer ${user.token}`
@@ -206,8 +206,8 @@ const TreatmentRecord: React.FC<TreatmentRecordProps> = ({ query = '' }) => {
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/treatment-records/${editingRecord.id}/`
-        : 'http://localhost:8000/api/treatment-records/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/treatment-records/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/treatment-records/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -298,7 +298,7 @@ const TreatmentRecord: React.FC<TreatmentRecordProps> = ({ query = '' }) => {
         return;
       }
         
-      let url = 'http://localhost:8000/api/treatment-records/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/treatment-records/export/';
       const params = new URLSearchParams();
 
       if (isAdmin) {
@@ -350,7 +350,7 @@ const TreatmentRecord: React.FC<TreatmentRecordProps> = ({ query = '' }) => {
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/treatment-records/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/treatment-records/${id}/`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${user.token}`

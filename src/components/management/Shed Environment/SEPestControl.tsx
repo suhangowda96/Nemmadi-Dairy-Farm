@@ -81,7 +81,7 @@ const PestControl: React.FC<PestControlProps> = ({ query = '' }) => {
         return;
       }
       
-      const url = `http://localhost:8000/api/se-pest-control/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/se-pest-control/${query}`;
       const response = await fetch(url, {
         headers: {
           'Authorization': `Bearer ${user.token}`
@@ -139,8 +139,8 @@ const PestControl: React.FC<PestControlProps> = ({ query = '' }) => {
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/se-pest-control/${editingRecord.id}/`
-        : 'http://localhost:8000/api/se-pest-control/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/se-pest-control/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/se-pest-control/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -221,7 +221,7 @@ const PestControl: React.FC<PestControlProps> = ({ query = '' }) => {
         return;
       }
       
-      let url = 'http://localhost:8000/api/se-pest-control/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/se-pest-control/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) {
@@ -274,7 +274,7 @@ const PestControl: React.FC<PestControlProps> = ({ query = '' }) => {
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/se-pest-control/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/se-pest-control/${id}/`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${user.token}`

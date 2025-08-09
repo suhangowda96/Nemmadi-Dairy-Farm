@@ -89,7 +89,7 @@ const RMDailyLog: React.FC<RMDailyLogProps> = ({ query = '' }) => {
         return;
       }
       
-      const url = `http://localhost:8000/api/rm-daily-logs/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/rm-daily-logs/${query}`;
       const response = await fetch(url, {
         headers: {
           'Authorization': `Bearer ${user.token}`
@@ -145,8 +145,8 @@ const RMDailyLog: React.FC<RMDailyLogProps> = ({ query = '' }) => {
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/rm-daily-logs/${editingRecord.id}/`
-        : 'http://localhost:8000/api/rm-daily-logs/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/rm-daily-logs/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/rm-daily-logs/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -238,7 +238,7 @@ const RMDailyLog: React.FC<RMDailyLogProps> = ({ query = '' }) => {
         return;
       }
       
-      let url = 'http://localhost:8000/api/rm-daily-logs/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/rm-daily-logs/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) {
@@ -291,7 +291,7 @@ const RMDailyLog: React.FC<RMDailyLogProps> = ({ query = '' }) => {
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/rm-daily-logs/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/rm-daily-logs/${id}/`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${user.token}`

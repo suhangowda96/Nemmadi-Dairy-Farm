@@ -67,7 +67,7 @@ const FTDailyFeedRegister: React.FC<FTDailyFeedRegisterProps> = ({ query = '' })
         return;
       }
       
-      const url = `http://localhost:8000/api/ft-daily-feeds/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/ft-daily-feeds/${query}`;
       const response = await fetch(url, {
         headers: {
           'Authorization': `Bearer ${user.token}`
@@ -123,8 +123,8 @@ const FTDailyFeedRegister: React.FC<FTDailyFeedRegisterProps> = ({ query = '' })
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/ft-daily-feeds/${editingRecord.id}/`
-        : 'http://localhost:8000/api/ft-daily-feeds/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/ft-daily-feeds/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/ft-daily-feeds/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -211,7 +211,7 @@ const FTDailyFeedRegister: React.FC<FTDailyFeedRegisterProps> = ({ query = '' })
         return;
       }
         
-      let url = 'http://localhost:8000/api/ft-daily-feeds/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/ft-daily-feeds/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) {
@@ -264,7 +264,7 @@ const FTDailyFeedRegister: React.FC<FTDailyFeedRegisterProps> = ({ query = '' })
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/ft-daily-feeds/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/ft-daily-feeds/${id}/`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${user.token}`

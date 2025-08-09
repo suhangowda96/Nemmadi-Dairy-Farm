@@ -102,7 +102,7 @@ const EmployeeManagement: React.FC<EmployeeManagementProps> = ({ query = '' }) =
         params.append('search', searchTerm);
       }
 
-      const url = `http://localhost:8000/api/employees/?${params.toString()}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/employees/?${params.toString()}`;
       
       const response = await fetch(url, {
         headers: {
@@ -218,7 +218,7 @@ const EmployeeManagement: React.FC<EmployeeManagementProps> = ({ query = '' }) =
         formData.append('picture', blob, filename);
       }
 
-      const response = await fetch('http://localhost:8000/api/employees/', {
+      const response = await fetch('https://nemmadi-dairy-farm.koyeb.app/api/employees/', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${user.token}`,
@@ -312,7 +312,7 @@ const EmployeeManagement: React.FC<EmployeeManagementProps> = ({ query = '' }) =
       }
 
       const response = await fetch(
-        `http://localhost:8000/api/employees/${currentEditEmployee.employee_id}/`, 
+        `https://nemmadi-dairy-farm.koyeb.app/api/employees/${currentEditEmployee.employee_id}/`, 
         {
           method: 'PATCH',
           headers: {
@@ -366,7 +366,7 @@ const EmployeeManagement: React.FC<EmployeeManagementProps> = ({ query = '' }) =
       formData.append('is_active', newStatus.toString());
 
       const response = await fetch(
-        `http://localhost:8000/api/employees/${employee.employee_id}/`, 
+        `https://nemmadi-dairy-farm.koyeb.app/api/employees/${employee.employee_id}/`, 
         {
           method: 'PATCH',
           headers: {

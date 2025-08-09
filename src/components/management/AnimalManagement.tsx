@@ -46,7 +46,7 @@ const AnimalManagement = () => {
         params.append('search', searchTerm);
       }
 
-      const url = `http://localhost:8000/api/animals/?${params.toString()}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/animals/?${params.toString()}`;
       
       const response = await fetch(url, {
         headers: {
@@ -96,7 +96,7 @@ const AnimalManagement = () => {
         return;
       }
 
-      const response = await fetch('http://localhost:8000/api/animals/', {
+      const response = await fetch('https://nemmadi-dairy-farm.koyeb.app/api/animals/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -163,7 +163,7 @@ const AnimalManagement = () => {
         return;
       }
 
-      const response = await fetch(`http://localhost:8000/api/animals/${currentEditAnimal.animal_id}/`, {
+      const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/animals/${currentEditAnimal.animal_id}/`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -211,7 +211,7 @@ const AnimalManagement = () => {
       ));
       
       const response = await fetch(
-        `http://localhost:8000/api/animals/${animal.animal_id}/`, 
+        `https://nemmadi-dairy-farm.koyeb.app/api/animals/${animal.animal_id}/`, 
         {
           method: 'PATCH',
           headers: {

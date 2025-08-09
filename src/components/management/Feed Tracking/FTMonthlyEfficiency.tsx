@@ -72,7 +72,7 @@ const FTMonthlyEfficiency: React.FC<FeedEfficiencyProps> = ({ query = '' }) => {
       if (endDate) params.append('end_date', formatDateForAPI(endDate));
       if (searchTerm) params.append('search', searchTerm);
       
-      let url = `http://localhost:8000/api/ft-monthly-efficiency/${query}`;
+      let url = `https://nemmadi-dairy-farm.koyeb.app/api/ft-monthly-efficiency/${query}`;
       if (params.toString()) url += `?${params.toString()}`;
       
       const response = await fetch(url, {
@@ -163,7 +163,7 @@ const FTMonthlyEfficiency: React.FC<FeedEfficiencyProps> = ({ query = '' }) => {
         return;
       }
       
-      let url = 'http://localhost:8000/api/ft-monthly-efficiency/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/ft-monthly-efficiency/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) {

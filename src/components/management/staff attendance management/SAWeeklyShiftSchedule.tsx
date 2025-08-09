@@ -75,7 +75,7 @@ const SAWeeklyShiftSchedule: React.FC<ShiftScheduleProps> = ({ query = '' }) => 
         return;
       }
       
-      const url = `http://localhost:8000/api/sa-weekly-shift/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/sa-weekly-shift/${query}`;
       const response = await fetch(url, {
         headers: {
           'Authorization': `Bearer ${user.token}`
@@ -115,7 +115,7 @@ const SAWeeklyShiftSchedule: React.FC<ShiftScheduleProps> = ({ query = '' }) => 
       setEmployeeError('');
       
       const response = await fetch(
-        `http://localhost:8000/api/sa-daily-attendance/?employee_id=${employeeId}`,
+        `https://nemmadi-dairy-farm.koyeb.app/api/sa-daily-attendance/?employee_id=${employeeId}`,
         {
           headers: {
             'Authorization': `Bearer ${user?.token}`
@@ -193,8 +193,8 @@ const SAWeeklyShiftSchedule: React.FC<ShiftScheduleProps> = ({ query = '' }) => 
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/sa-weekly-shift/${editingRecord.id}/`
-        : 'http://localhost:8000/api/sa-weekly-shift/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/sa-weekly-shift/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/sa-weekly-shift/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -278,7 +278,7 @@ const SAWeeklyShiftSchedule: React.FC<ShiftScheduleProps> = ({ query = '' }) => 
         return;
       }
       
-      let url = 'http://localhost:8000/api/sa-weekly-shift/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/sa-weekly-shift/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) {
@@ -330,7 +330,7 @@ const SAWeeklyShiftSchedule: React.FC<ShiftScheduleProps> = ({ query = '' }) => 
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/sa-weekly-shift/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/sa-weekly-shift/${id}/`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${user.token}`

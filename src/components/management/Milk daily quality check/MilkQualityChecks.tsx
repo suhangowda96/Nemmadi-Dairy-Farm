@@ -87,7 +87,7 @@ const MilkQualityChecks: React.FC<MilkQualityChecksProps> = ({ query = '' }) => 
         return;
       }
       
-      const url = `http://localhost:8000/api/milk-quality-checks/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/milk-quality-checks/${query}`;
       const response = await fetch(url, {
         headers: {
           'Authorization': `Bearer ${user.token}`
@@ -149,8 +149,8 @@ const MilkQualityChecks: React.FC<MilkQualityChecksProps> = ({ query = '' }) => 
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/milk-quality-checks/${editingRecord.id}/`
-        : 'http://localhost:8000/api/milk-quality-checks/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/milk-quality-checks/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/milk-quality-checks/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -233,7 +233,7 @@ const MilkQualityChecks: React.FC<MilkQualityChecksProps> = ({ query = '' }) => 
       return;
     }
       
-      let url = 'http://localhost:8000/api/milk-quality-checks/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/milk-quality-checks/export/';
       const params = new URLSearchParams();
 
        if (isAdmin) {
@@ -285,7 +285,7 @@ const MilkQualityChecks: React.FC<MilkQualityChecksProps> = ({ query = '' }) => 
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/milk-quality-checks/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/milk-quality-checks/${id}/`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${user.token}`

@@ -73,7 +73,7 @@ const MQCCollectionQuality: React.FC<MQCCollectionQualityProps> = ({ query = '' 
         return;
       }
       
-      const url = `http://localhost:8000/api/mqc-collection-quality/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/mqc-collection-quality/${query}`;
       const response = await fetch(url, {
         headers: {
           'Authorization': `Bearer ${user.token}`
@@ -130,8 +130,8 @@ const MQCCollectionQuality: React.FC<MQCCollectionQualityProps> = ({ query = '' 
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/mqc-collection-quality/${editingRecord.id}/`
-        : 'http://localhost:8000/api/mqc-collection-quality/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/mqc-collection-quality/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/mqc-collection-quality/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -229,7 +229,7 @@ const MQCCollectionQuality: React.FC<MQCCollectionQualityProps> = ({ query = '' 
         return;
       }
         
-      let url = 'http://localhost:8000/api/mqc-collection-quality/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/mqc-collection-quality/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) {
@@ -282,7 +282,7 @@ const MQCCollectionQuality: React.FC<MQCCollectionQualityProps> = ({ query = '' 
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/mqc-collection-quality/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/mqc-collection-quality/${id}/`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${user.token}`

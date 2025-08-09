@@ -57,7 +57,7 @@ const FWADailyObservation: React.FC<FWADailyObservationProps> = ({ query = '' })
       if (!user || !user.token) return;
       
       try {
-        const response = await fetch('http://localhost:8000/api/animals/', {
+        const response = await fetch('https://nemmadi-dairy-farm.koyeb.app/api/animals/', {
           headers: {
             'Authorization': `Bearer ${user.token}`
           }
@@ -119,7 +119,7 @@ const FWADailyObservation: React.FC<FWADailyObservationProps> = ({ query = '' })
         return;
       }
       
-      const url = `http://localhost:8000/api/fwa-daily-observations/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/fwa-daily-observations/${query}`;
       const response = await fetch(url, {
         headers: {
           'Authorization': `Bearer ${user.token}`
@@ -176,8 +176,8 @@ const FWADailyObservation: React.FC<FWADailyObservationProps> = ({ query = '' })
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/fwa-daily-observations/${editingRecord.id}/`
-        : 'http://localhost:8000/api/fwa-daily-observations/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/fwa-daily-observations/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/fwa-daily-observations/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -264,7 +264,7 @@ const FWADailyObservation: React.FC<FWADailyObservationProps> = ({ query = '' })
         return;
       }
       
-      let url = 'http://localhost:8000/api/fwa-daily-observations/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/fwa-daily-observations/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) {
@@ -316,7 +316,7 @@ const FWADailyObservation: React.FC<FWADailyObservationProps> = ({ query = '' })
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/fwa-daily-observations/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/fwa-daily-observations/${id}/`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${user.token}`

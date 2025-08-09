@@ -73,7 +73,7 @@ const SATaskAssignment: React.FC<TaskAssignmentProps> = ({ query = '' }) => {
         return;
       }
       
-      const url = `http://localhost:8000/api/sa-task-assignment/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/sa-task-assignment/${query}`;
       const response = await fetch(url, {
         headers: {
           'Authorization': `Bearer ${user.token}`
@@ -114,7 +114,7 @@ const SATaskAssignment: React.FC<TaskAssignmentProps> = ({ query = '' }) => {
       
       // CORRECTED ENDPOINT: Using the proper employee endpoint
       const response = await fetch(
-        `http://localhost:8000/api/sa-daily-attendance/?employee_id=${employeeId}`,
+        `https://nemmadi-dairy-farm.koyeb.app/api/sa-daily-attendance/?employee_id=${employeeId}`,
         {
           headers: {
             'Authorization': `Bearer ${user?.token}`
@@ -193,8 +193,8 @@ const SATaskAssignment: React.FC<TaskAssignmentProps> = ({ query = '' }) => {
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/sa-task-assignment/${editingRecord.id}/`
-        : 'http://localhost:8000/api/sa-task-assignment/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/sa-task-assignment/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/sa-task-assignment/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -282,7 +282,7 @@ const SATaskAssignment: React.FC<TaskAssignmentProps> = ({ query = '' }) => {
         return;
       }
       
-      let url = 'http://localhost:8000/api/sa-task-assignment/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/sa-task-assignment/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) {
@@ -334,7 +334,7 @@ const SATaskAssignment: React.FC<TaskAssignmentProps> = ({ query = '' }) => {
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/sa-task-assignment/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/sa-task-assignment/${id}/`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${user.token}`

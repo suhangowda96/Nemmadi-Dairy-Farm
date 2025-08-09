@@ -81,7 +81,7 @@ const HealthMedicineRecords: React.FC<HealthMedicineRecordsProps> = ({ query = '
       if (!user || !user.token) return;
       
       try {
-        const response = await fetch('http://localhost:8000/api/medicine-inventory/', {
+        const response = await fetch('https://nemmadi-dairy-farm.koyeb.app/api/medicine-inventory/', {
           headers: {
             'Authorization': `Bearer ${user.token}`
           }
@@ -107,7 +107,7 @@ const HealthMedicineRecords: React.FC<HealthMedicineRecordsProps> = ({ query = '
       if (!user || !user.token) return;
       
       try {
-        const response = await fetch('http://localhost:8000/api/animals/', {
+        const response = await fetch('https://nemmadi-dairy-farm.koyeb.app/api/animals/', {
           headers: {
             'Authorization': `Bearer ${user.token}`
           }
@@ -135,7 +135,7 @@ const HealthMedicineRecords: React.FC<HealthMedicineRecordsProps> = ({ query = '
       
       try {
         const response = await fetch(
-          'http://localhost:8000/api/breeding-calving-records/?is_active=true', 
+          'https://nemmadi-dairy-farm.koyeb.app/api/breeding-calving-records/?is_active=true', 
           {
             headers: { 'Authorization': `Bearer ${user.token}` }
           }
@@ -212,7 +212,7 @@ const HealthMedicineRecords: React.FC<HealthMedicineRecordsProps> = ({ query = '
         return;
       }
       
-      let url = `http://localhost:8000/api/health-medicine-records/${query}`;
+      let url = `https://nemmadi-dairy-farm.koyeb.app/api/health-medicine-records/${query}`;
       const params = new URLSearchParams();
       
       if (searchTerm) {
@@ -303,8 +303,8 @@ const HealthMedicineRecords: React.FC<HealthMedicineRecordsProps> = ({ query = '
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/health-medicine-records/${editingRecord.id}/`
-        : 'http://localhost:8000/api/health-medicine-records/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/health-medicine-records/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/health-medicine-records/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -411,7 +411,7 @@ const HealthMedicineRecords: React.FC<HealthMedicineRecordsProps> = ({ query = '
         return;
       }
       
-      let url = 'http://localhost:8000/api/health-medicine-records/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/health-medicine-records/export/';
       const params = new URLSearchParams();
 
       if (user.role === 'admin') {
@@ -467,7 +467,7 @@ const HealthMedicineRecords: React.FC<HealthMedicineRecordsProps> = ({ query = '
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/health-medicine-records/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/health-medicine-records/${id}/`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${user.token}`

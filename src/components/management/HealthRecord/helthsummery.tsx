@@ -75,7 +75,7 @@ const HealthSummary: React.FC<HealthSummaryProps> = ({ query = '' }) => {
       if (endDate) params.append('end_date', formatDateForAPI(endDate));
       if (searchTerm) params.append('search', searchTerm);
       
-      let url = `http://localhost:8000/api/health-summary/${query}`;
+      let url = `https://nemmadi-dairy-farm.koyeb.app/api/health-summary/${query}`;
       if (params.toString()) url += `?${params.toString()}`;
       
       const response = await fetch(url, {
@@ -172,7 +172,7 @@ const HealthSummary: React.FC<HealthSummaryProps> = ({ query = '' }) => {
         return;
       }
       
-      let url = 'http://localhost:8000/api/health-summary/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/health-summary/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) {

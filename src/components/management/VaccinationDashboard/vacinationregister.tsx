@@ -83,7 +83,7 @@ const VaccineRegister: React.FC<VaccineRegisterProps> = ({ query = '' }) => {
       if (endDate) params.append('end_date', formatDateForAPI(endDate));
       if (searchTerm) params.append('search', searchTerm);
       
-      let url = `http://localhost:8000/api/vaccines-register/${query}`;
+      let url = `https://nemmadi-dairy-farm.koyeb.app/api/vaccines-register/${query}`;
       if (params.toString()) url += `?${params.toString()}`;
       
       const response = await fetch(url, {
@@ -162,7 +162,7 @@ const VaccineRegister: React.FC<VaccineRegisterProps> = ({ query = '' }) => {
         return;
       }
       
-      let url = 'http://localhost:8000/api/vaccines-register/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/vaccines-register/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) {

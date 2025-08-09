@@ -71,7 +71,7 @@ const EMEquipmentRegisterPage : React.FC<EMEquipmentRegisterProps> = ({ query = 
         return;
       }
       
-      const url = `http://localhost:8000/api/em-equipment-register/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/em-equipment-register/${query}`;
       const response = await fetch(url, {
         headers: {
           'Authorization': `Bearer ${user.token}`
@@ -163,7 +163,7 @@ const EMEquipmentRegisterPage : React.FC<EMEquipmentRegisterProps> = ({ query = 
         user: user.id
       };
 
-      const url = `http://localhost:8000/api/em-equipment-register/${editingRecord.id}/`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/em-equipment-register/${editingRecord.id}/`;
       const method = 'PUT';
       
       const response = await fetch(url, {

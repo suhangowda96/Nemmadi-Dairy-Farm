@@ -69,7 +69,7 @@ const EquipmentMaintenance : React.FC<EMEquipmentMaintenanceProps> = ({ query = 
         return;
       }
       
-      const url = `http://localhost:8000/api/equipment-maintenance/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/equipment-maintenance/${query}`;
       const response = await fetch(url, {
         headers: {
           'Authorization': `Bearer ${user.token}`
@@ -155,7 +155,7 @@ const EquipmentMaintenance : React.FC<EMEquipmentMaintenanceProps> = ({ query = 
         user: user.id
       };
 
-      const url = `http://localhost:8000/api/equipment-maintenance/${editingRecord.id}/`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/equipment-maintenance/${editingRecord.id}/`;
       const method = 'PUT';
       
       const response = await fetch(url, {

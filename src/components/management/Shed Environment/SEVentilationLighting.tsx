@@ -59,7 +59,7 @@ const SEVentilationLighting: React.FC<SEVentilationLightingProps> = ({ query = '
         return;
       }
       
-      const url = `http://localhost:8000/api/se-ventilation-lighting/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/se-ventilation-lighting/${query}`;
       const response = await fetch(url, {
         headers: { 'Authorization': `Bearer ${user.token}` }
       });
@@ -113,8 +113,8 @@ const SEVentilationLighting: React.FC<SEVentilationLightingProps> = ({ query = '
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/se-ventilation-lighting/${editingRecord.id}/`
-        : 'http://localhost:8000/api/se-ventilation-lighting/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/se-ventilation-lighting/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/se-ventilation-lighting/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -192,7 +192,7 @@ const SEVentilationLighting: React.FC<SEVentilationLightingProps> = ({ query = '
         return;
       }
       
-      let url = 'http://localhost:8000/api/se-ventilation-lighting/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/se-ventilation-lighting/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) params.append('all_supervisors', 'true');
@@ -237,7 +237,7 @@ const SEVentilationLighting: React.FC<SEVentilationLightingProps> = ({ query = '
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/se-ventilation-lighting/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/se-ventilation-lighting/${id}/`, {
           method: 'DELETE',
           headers: { 'Authorization': `Bearer ${user.token}` }
         });

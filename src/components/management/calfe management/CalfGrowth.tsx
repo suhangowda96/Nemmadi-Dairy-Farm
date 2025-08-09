@@ -56,7 +56,7 @@ const CalfGrowth: React.FC<CalfGrowthProps> = ({ query = '' }) => {
       try {
         // Changed from ?active=true to ?is_active=true
         const response = await fetch(
-          'http://localhost:8000/api/breeding-calving-records/?is_active=true', 
+          'https://nemmadi-dairy-farm.koyeb.app/api/breeding-calving-records/?is_active=true', 
           {
             headers: { 'Authorization': `Bearer ${user.token}` }
           }
@@ -129,7 +129,7 @@ const CalfGrowth: React.FC<CalfGrowthProps> = ({ query = '' }) => {
         return;
       }
       
-      const url = `http://localhost:8000/api/calf-growth/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/calf-growth/${query}`;
       const response = await fetch(url, {
         headers: {
           'Authorization': `Bearer ${user.token}`
@@ -189,8 +189,8 @@ const CalfGrowth: React.FC<CalfGrowthProps> = ({ query = '' }) => {
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/calf-growth/${editingRecord.id}/`
-        : 'http://localhost:8000/api/calf-growth/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/calf-growth/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/calf-growth/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -275,7 +275,7 @@ const CalfGrowth: React.FC<CalfGrowthProps> = ({ query = '' }) => {
         return;
       }
 
-      let url = 'http://localhost:8000/api/calf-growth/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/calf-growth/export/';
       const params = new URLSearchParams();
 
       if (isAdmin) {
@@ -328,7 +328,7 @@ const CalfGrowth: React.FC<CalfGrowthProps> = ({ query = '' }) => {
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/calf-growth/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/calf-growth/${id}/`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${user.token}`

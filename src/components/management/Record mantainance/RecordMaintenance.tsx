@@ -81,7 +81,7 @@ const RecordMaintenance: React.FC<RecordMaintenanceProps> = ({ query = '' }) => 
         return;
       }
       
-      const url = `http://localhost:8000/api/record-maintenance/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/record-maintenance/${query}`;
         const response = await fetch(url, {
           headers: {
             'Authorization': `Bearer ${user.token}`
@@ -144,8 +144,8 @@ const RecordMaintenance: React.FC<RecordMaintenanceProps> = ({ query = '' }) => 
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/record-maintenance/${editingRecord.id}/`
-        : 'http://localhost:8000/api/record-maintenance/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/record-maintenance/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/record-maintenance/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -219,7 +219,7 @@ const RecordMaintenance: React.FC<RecordMaintenanceProps> = ({ query = '' }) => 
     }
     
     // Build URL with parameters
-    let url = 'http://localhost:8000/api/record-maintenance/export/';
+    let url = 'https://nemmadi-dairy-farm.koyeb.app/api/record-maintenance/export/';
     const params = new URLSearchParams();
 
     if (isAdmin) {
@@ -273,7 +273,7 @@ const handleDelete = async (id: number) => {
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/record-maintenance/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/record-maintenance/${id}/`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${user.token}`

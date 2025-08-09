@@ -91,7 +91,7 @@ const CalfFeedInventory: React.FC<CalfFeedInventoryProps> = ({ query = '' }) => 
         });
       }
       
-      const url = `http://localhost:8000/api/calf-feed-inventory/?${params.toString()}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/calf-feed-inventory/?${params.toString()}`;
       
       const response = await fetch(url, {
         headers: {
@@ -173,7 +173,7 @@ const CalfFeedInventory: React.FC<CalfFeedInventoryProps> = ({ query = '' }) => 
         return;
       }
       
-      let  url = 'http://localhost:8000/api/calf-feed-inventory/export/';
+      let  url = 'https://nemmadi-dairy-farm.koyeb.app/api/calf-feed-inventory/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) {

@@ -71,7 +71,7 @@ const MHEquipmentCleaning: React.FC<EquipmentCleaningProps> = ({ query = '' }) =
         return;
       }
       
-      const url = `http://localhost:8000/api/mhequipment-cleaning/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/mhequipment-cleaning/${query}`;
       const response = await fetch(url, {
         headers: {
           'Authorization': `Bearer ${user.token}`
@@ -127,8 +127,8 @@ const MHEquipmentCleaning: React.FC<EquipmentCleaningProps> = ({ query = '' }) =
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/mhequipment-cleaning/${editingRecord.id}/`
-        : 'http://localhost:8000/api/mhequipment-cleaning/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/mhequipment-cleaning/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/mhequipment-cleaning/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -213,7 +213,7 @@ const MHEquipmentCleaning: React.FC<EquipmentCleaningProps> = ({ query = '' }) =
         return;
       }
       
-      let url = 'http://localhost:8000/api/mhequipment-cleaning/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/mhequipment-cleaning/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) {
@@ -266,7 +266,7 @@ const MHEquipmentCleaning: React.FC<EquipmentCleaningProps> = ({ query = '' }) =
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/mhequipment-cleaning/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/mhequipment-cleaning/${id}/`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${user.token}`

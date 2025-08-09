@@ -63,7 +63,7 @@ const MMTWeeklySummary: React.FC<MilkYieldProps> = ({ query = '' }) => {
       if (endDate) params.append('end_date', formatDateForAPI(endDate));
       if (weekNumberFilter) params.append('week_number', weekNumberFilter.toString());
       
-      let url = `http://localhost:8000/api/myt-weekly-summary/${query}`;
+      let url = `https://nemmadi-dairy-farm.koyeb.app/api/myt-weekly-summary/${query}`;
       if (params.toString()) url += `?${params.toString()}`;
       
       const response = await fetch(url, {
@@ -149,7 +149,7 @@ const MMTWeeklySummary: React.FC<MilkYieldProps> = ({ query = '' }) => {
         return;
       }
       
-      let url = 'http://localhost:8000/api/myt-weekly-summary/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/myt-weekly-summary/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) {

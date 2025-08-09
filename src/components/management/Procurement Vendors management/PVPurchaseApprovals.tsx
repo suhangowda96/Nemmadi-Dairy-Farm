@@ -105,7 +105,7 @@ const PVPurchaseApprovals: React.FC<PVPurchaseApprovalProps> = ({ query = '' }) 
         return;
       }
       
-      const url = `http://localhost:8000/api/PVpurchase-approvals/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/PVpurchase-approvals/${query}`;
       const response = await fetch(url, {
         headers: {
           'Authorization': `Bearer ${user.token}`
@@ -177,8 +177,8 @@ const PVPurchaseApprovals: React.FC<PVPurchaseApprovalProps> = ({ query = '' }) 
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/PVpurchase-approvals/${editingRecord.id}/`
-        : 'http://localhost:8000/api/PVpurchase-approvals/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/PVpurchase-approvals/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/PVpurchase-approvals/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -281,7 +281,7 @@ const PVPurchaseApprovals: React.FC<PVPurchaseApprovalProps> = ({ query = '' }) 
       try {
         setDeletingId(id);
         
-        const response = await fetch(`http://localhost:8000/api/PVpurchase-approvals/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/PVpurchase-approvals/${id}/`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${user?.token}`

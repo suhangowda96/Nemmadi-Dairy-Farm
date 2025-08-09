@@ -74,7 +74,7 @@ const VaccinationMonthlyStatus: React.FC<VaccinationSummaryProps> = ({ query = '
       if (endDate) params.append('end_date', formatDateForAPI(endDate));
       if (searchTerm) params.append('search', searchTerm);
       
-      let url = `http://localhost:8000/api/vaccination-summary/${query}`;
+      let url = `https://nemmadi-dairy-farm.koyeb.app/api/vaccination-summary/${query}`;
       if (params.toString()) url += `?${params.toString()}`;
       
       const response = await fetch(url, {
@@ -141,7 +141,7 @@ const VaccinationMonthlyStatus: React.FC<VaccinationSummaryProps> = ({ query = '
         return;
       }
       
-      let url = 'http://localhost:8000/api/vaccination-summary/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/vaccination-summary/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) {

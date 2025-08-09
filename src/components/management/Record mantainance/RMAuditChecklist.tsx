@@ -61,7 +61,7 @@ const RMAuditChecklist: React.FC<RMAuditChecklistProps> = ({ query = '' }) => {
         return;
       }
       
-      const url = `http://localhost:8000/api/rm-audit-checklists/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/rm-audit-checklists/${query}`;
       const response = await fetch(url, {
         headers: { 
           'Authorization': `Bearer ${user.token}` 
@@ -115,8 +115,8 @@ const RMAuditChecklist: React.FC<RMAuditChecklistProps> = ({ query = '' }) => {
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/rm-audit-checklists/${editingRecord.id}/`
-        : 'http://localhost:8000/api/rm-audit-checklists/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/rm-audit-checklists/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/rm-audit-checklists/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -200,7 +200,7 @@ const RMAuditChecklist: React.FC<RMAuditChecklistProps> = ({ query = '' }) => {
         return;
       }
       
-      let url = 'http://localhost:8000/api/rm-audit-checklists/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/rm-audit-checklists/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) {
@@ -253,7 +253,7 @@ const RMAuditChecklist: React.FC<RMAuditChecklistProps> = ({ query = '' }) => {
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/rm-audit-checklists/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/rm-audit-checklists/${id}/`, {
           method: 'DELETE',
           headers: { 
             'Authorization': `Bearer ${user.token}` 

@@ -64,7 +64,7 @@ const RMRecordCategory: React.FC<RMRecordCategoryProps> = ({ query = '' }) => {
         return;
       }
       
-      const url = `http://localhost:8000/api/rm-record-categories/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/rm-record-categories/${query}`;
       const response = await fetch(url, {
         headers: {
           'Authorization': `Bearer ${user.token}`
@@ -114,8 +114,8 @@ const RMRecordCategory: React.FC<RMRecordCategoryProps> = ({ query = '' }) => {
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/rm-record-categories/${editingRecord.id}/`
-        : 'http://localhost:8000/api/rm-record-categories/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/rm-record-categories/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/rm-record-categories/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -194,7 +194,7 @@ const RMRecordCategory: React.FC<RMRecordCategoryProps> = ({ query = '' }) => {
         return;
       }
       
-      let url = 'http://localhost:8000/api/rm-record-categories/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/rm-record-categories/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) {
@@ -244,7 +244,7 @@ const RMRecordCategory: React.FC<RMRecordCategoryProps> = ({ query = '' }) => {
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/rm-record-categories/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/rm-record-categories/${id}/`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${user.token}`

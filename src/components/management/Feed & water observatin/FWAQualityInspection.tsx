@@ -62,7 +62,7 @@ const FWAQualityInspection: React.FC<FWAQualityInspectionProps> = ({ query = '' 
         return;
       }
       
-      const url = `http://localhost:8000/api/fwa-quality-inspections/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/fwa-quality-inspections/${query}`;
       const response = await fetch(url, {
         headers: {
           'Authorization': `Bearer ${user.token}`
@@ -124,8 +124,8 @@ const FWAQualityInspection: React.FC<FWAQualityInspectionProps> = ({ query = '' 
       };
 
       const url = editingInspection 
-        ? `http://localhost:8000/api/fwa-quality-inspections/${editingInspection.id}/`
-        : 'http://localhost:8000/api/fwa-quality-inspections/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/fwa-quality-inspections/${editingInspection.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/fwa-quality-inspections/';
       
       const method = editingInspection ? 'PUT' : 'POST';
       
@@ -214,7 +214,7 @@ const FWAQualityInspection: React.FC<FWAQualityInspectionProps> = ({ query = '' 
         return;
       }
         
-      let url = 'http://localhost:8000/api/fwa-quality-inspections/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/fwa-quality-inspections/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) {
@@ -266,7 +266,7 @@ const FWAQualityInspection: React.FC<FWAQualityInspectionProps> = ({ query = '' 
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/fwa-quality-inspections/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/fwa-quality-inspections/${id}/`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${user.token}`

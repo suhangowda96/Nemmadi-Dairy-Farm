@@ -70,7 +70,7 @@ const MHMilkerHygiene: React.FC<MilkerHygieneProps> = ({ query = '' }) => {
         return;
       }
       
-      const url = `http://localhost:8000/api/mhmilker-hygiene/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/mhmilker-hygiene/${query}`;
       const response = await fetch(url, {
         headers: {
           'Authorization': `Bearer ${user.token}`
@@ -126,8 +126,8 @@ const MHMilkerHygiene: React.FC<MilkerHygieneProps> = ({ query = '' }) => {
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/mhmilker-hygiene/${editingRecord.id}/`
-        : 'http://localhost:8000/api/mhmilker-hygiene/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/mhmilker-hygiene/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/mhmilker-hygiene/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -212,7 +212,7 @@ const MHMilkerHygiene: React.FC<MilkerHygieneProps> = ({ query = '' }) => {
         return;
       }
       
-      let url = 'http://localhost:8000/api/mhmilker-hygiene/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/mhmilker-hygiene/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) {
@@ -265,7 +265,7 @@ const MHMilkerHygiene: React.FC<MilkerHygieneProps> = ({ query = '' }) => {
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/mhmilker-hygiene/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/mhmilker-hygiene/${id}/`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${user.token}`

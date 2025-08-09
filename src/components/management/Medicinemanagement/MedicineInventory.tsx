@@ -76,7 +76,7 @@ const MedicineInventory: React.FC<MedicineInventoryProps> = ({ query = '' }) => 
         });
       }
       
-      const response = await axios.get('http://localhost:8000/api/medicine-inventory/', {
+      const response = await axios.get('https://nemmadi-dairy-farm.koyeb.app/api/medicine-inventory/', {
         params,
         headers: {
           'Authorization': `Bearer ${user.token}`
@@ -183,7 +183,7 @@ const MedicineInventory: React.FC<MedicineInventoryProps> = ({ query = '' }) => 
         });
       }
       
-      const response = await axios.get('http://localhost:8000/api/medicine-inventory/export/', {
+      const response = await axios.get('https://nemmadi-dairy-farm.koyeb.app/api/medicine-inventory/export/', {
         params,
         headers: {
           'Authorization': `Bearer ${user.token}`

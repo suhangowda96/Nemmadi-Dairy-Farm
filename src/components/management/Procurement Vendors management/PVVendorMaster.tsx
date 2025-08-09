@@ -102,7 +102,7 @@ const PVVendorMaster: React.FC<PVVendorMasterProps> = ({ query = '' }) => {
         return;
       }
       
-      const url = `http://localhost:8000/api/PVvendor-masters/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/PVvendor-masters/${query}`;
       const response = await fetch(url, {
         headers: {
           'Authorization': `Bearer ${user.token}`
@@ -169,8 +169,8 @@ const PVVendorMaster: React.FC<PVVendorMasterProps> = ({ query = '' }) => {
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/PVvendor-masters/${editingRecord.id}/`
-        : 'http://localhost:8000/api/PVvendor-masters/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/PVvendor-masters/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/PVvendor-masters/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -295,7 +295,7 @@ const PVVendorMaster: React.FC<PVVendorMasterProps> = ({ query = '' }) => {
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/PVvendor-masters/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/PVvendor-masters/${id}/`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${user.token}`

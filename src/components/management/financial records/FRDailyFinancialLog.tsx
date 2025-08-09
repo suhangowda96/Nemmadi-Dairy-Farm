@@ -88,7 +88,7 @@ const FRDailyFinancialLog: React.FC<FRDailyFinancialLogProps> = ({ query = '' })
         return;
       }
       
-      const url = `http://localhost:8000/api/fr-daily-financial-logs/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/fr-daily-financial-logs/${query}`;
       const response = await fetch(url, {
         headers: {
           'Authorization': `Bearer ${user.token}`
@@ -153,8 +153,8 @@ const FRDailyFinancialLog: React.FC<FRDailyFinancialLogProps> = ({ query = '' })
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/fr-daily-financial-logs/${editingRecord.id}/`
-        : 'http://localhost:8000/api/fr-daily-financial-logs/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/fr-daily-financial-logs/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/fr-daily-financial-logs/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -241,7 +241,7 @@ const FRDailyFinancialLog: React.FC<FRDailyFinancialLogProps> = ({ query = '' })
         return;
       }
       
-      let url = 'http://localhost:8000/api/fr-daily-financial-logs/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/fr-daily-financial-logs/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) {
@@ -293,7 +293,7 @@ const FRDailyFinancialLog: React.FC<FRDailyFinancialLogProps> = ({ query = '' })
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/fr-daily-financial-logs/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/fr-daily-financial-logs/${id}/`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${user.token}`

@@ -79,7 +79,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         role: data.role
       };
     
-      const response = await fetch('http://localhost:8000/api/signup/', {
+      const response = await fetch('https://nemmadi-dairy-farm.koyeb.app/api/signup/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -156,7 +156,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setError(null);
 
     try {
-      const response = await fetch('http://localhost:8000/api/login/', {
+      const response = await fetch('https://nemmadi-dairy-farm.koyeb.app/api/login/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -241,7 +241,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setError(null);
 
     try {
-      const response = await fetch('http://localhost:8000/api/signup/', {
+      const response = await fetch('https://nemmadi-dairy-farm.koyeb.app/api/signup/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -306,7 +306,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setError(null);
     
     try {
-      const response = await fetch('http://localhost:8000/api/user/change-username/', {
+      const response = await fetch('https://nemmadi-dairy-farm.koyeb.app/api/user/change-username/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -338,7 +338,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setError(null);
     
     try {
-      const response = await fetch('http://localhost:8000/api/user/change-password/', {
+      const response = await fetch('https://nemmadi-dairy-farm.koyeb.app/api/user/change-password/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

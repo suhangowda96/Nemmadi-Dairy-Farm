@@ -83,7 +83,7 @@ const MedicineRegister: React.FC<MedicineRegisterProps> = ({ query = '' }) => {
       if (endDate) params.append('end_date', formatDateForAPI(endDate));
       if (searchTerm) params.append('search', searchTerm);
       
-      let url = `http://localhost:8000/api/medicines-register/${query}`;
+      let url = `https://nemmadi-dairy-farm.koyeb.app/api/medicines-register/${query}`;
       if (params.toString()) url += `?${params.toString()}`;
       
       const response = await fetch(url, {
@@ -162,7 +162,7 @@ const MedicineRegister: React.FC<MedicineRegisterProps> = ({ query = '' }) => {
         return;
       }
       
-      let url = 'http://localhost:8000/api/medicines-register/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/medicines-register/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) {

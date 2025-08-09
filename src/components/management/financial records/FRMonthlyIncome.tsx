@@ -71,7 +71,7 @@ const FRMonthlyIncome: React.FC<FinancialIncomeProps> = ({ query = '' }) => {
       if (startDate) params.append('start_date', formatDateForAPI(startDate));
       if (endDate) params.append('end_date', formatDateForAPI(endDate));
       
-      let url = `http://localhost:8000/api/fr-monthly-income/${query}`;
+      let url = `https://nemmadi-dairy-farm.koyeb.app/api/fr-monthly-income/${query}`;
       if (params.toString()) url += `?${params.toString()}`;
       
       const response = await fetch(url, {
@@ -146,7 +146,7 @@ const FRMonthlyIncome: React.FC<FinancialIncomeProps> = ({ query = '' }) => {
         return;
       }
       
-      let url = 'http://localhost:8000/api/fr-monthly-income/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/fr-monthly-income/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) {

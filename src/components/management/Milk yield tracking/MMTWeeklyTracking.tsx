@@ -84,7 +84,7 @@ const MMTWeeklyTracking: React.FC<MMTWeeklyTrackingProps> = ({ query = '' }) => 
       if (!user || !user.token) return;
       
       try {
-        const response = await fetch('http://localhost:8000/api/animals/', {
+        const response = await fetch('https://nemmadi-dairy-farm.koyeb.app/api/animals/', {
           headers: {
             'Authorization': `Bearer ${user.token}`
           }
@@ -163,7 +163,7 @@ const MMTWeeklyTracking: React.FC<MMTWeeklyTrackingProps> = ({ query = '' }) => 
         return;
       }
       
-      let url = `http://localhost:8000/api/myt-weekly-tracking/${query}`;
+      let url = `https://nemmadi-dairy-farm.koyeb.app/api/myt-weekly-tracking/${query}`;
       const params = new URLSearchParams();
       
       if (searchTerm) {
@@ -249,8 +249,8 @@ const MMTWeeklyTracking: React.FC<MMTWeeklyTrackingProps> = ({ query = '' }) => 
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/myt-weekly-tracking/${editingRecord.id}/`
-        : 'http://localhost:8000/api/myt-weekly-tracking/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/myt-weekly-tracking/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/myt-weekly-tracking/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -321,7 +321,7 @@ const MMTWeeklyTracking: React.FC<MMTWeeklyTrackingProps> = ({ query = '' }) => 
         return;
       }
       
-      let url = 'http://localhost:8000/api/myt-weekly-tracking/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/myt-weekly-tracking/export/';
       const params = new URLSearchParams();
 
       if (user.role === 'admin') {
@@ -393,7 +393,7 @@ const MMTWeeklyTracking: React.FC<MMTWeeklyTrackingProps> = ({ query = '' }) => 
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/myt-weekly-tracking/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/myt-weekly-tracking/${id}/`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${user.token}`

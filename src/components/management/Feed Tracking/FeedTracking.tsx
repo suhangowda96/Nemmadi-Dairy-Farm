@@ -84,7 +84,7 @@ const FeedTracking: React.FC<FeedTrackingProps> = ({ query = '' }) => {
         });
       }
       
-      const url = `http://localhost:8000/api/feed-tracking/?${params.toString()}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/feed-tracking/?${params.toString()}`;
       
       const response = await fetch(url, {
         headers: {
@@ -168,7 +168,7 @@ const FeedTracking: React.FC<FeedTrackingProps> = ({ query = '' }) => {
         return;
       }
       
-      const url = 'http://localhost:8000/api/feed-tracking/export/';
+      const url = 'https://nemmadi-dairy-farm.koyeb.app/api/feed-tracking/export/';
       const params = new URLSearchParams();
       
       // Add filter parameters

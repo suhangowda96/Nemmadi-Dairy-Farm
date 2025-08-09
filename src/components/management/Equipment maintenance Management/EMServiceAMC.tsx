@@ -73,7 +73,7 @@ const EMServiceAMC: React.FC<ServiceAMCProps> = ({ query = '' }) => {
         return;
       }
       
-      const url = `http://localhost:8000/api/em-service-amc/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/em-service-amc/${query}`;
       const response = await fetch(url, {
         headers: {
           'Authorization': `Bearer ${user.token}`
@@ -130,8 +130,8 @@ const EMServiceAMC: React.FC<ServiceAMCProps> = ({ query = '' }) => {
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/em-service-amc/${editingRecord.id}/`
-        : 'http://localhost:8000/api/em-service-amc/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/em-service-amc/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/em-service-amc/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -217,7 +217,7 @@ const EMServiceAMC: React.FC<ServiceAMCProps> = ({ query = '' }) => {
         return;
       }
       
-      let url = 'http://localhost:8000/api/em-service-amc/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/em-service-amc/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) {
@@ -269,7 +269,7 @@ const EMServiceAMC: React.FC<ServiceAMCProps> = ({ query = '' }) => {
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/em-service-amc/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/em-service-amc/${id}/`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${user.token}`

@@ -110,7 +110,7 @@ const MMTDailyYieldRecords: React.FC<MMTDailyYieldRecordsProps> = ({ query = '' 
       if (!user || !user.token) return;
       
       try {
-        const response = await fetch('http://localhost:8000/api/animals/', {
+        const response = await fetch('https://nemmadi-dairy-farm.koyeb.app/api/animals/', {
           headers: {
             'Authorization': `Bearer ${user.token}`
           }
@@ -229,7 +229,7 @@ const MMTDailyYieldRecords: React.FC<MMTDailyYieldRecordsProps> = ({ query = '' 
         return;
       }
       
-      let url = `http://localhost:8000/api/myt-daily-yield-records/${query}`;
+      let url = `https://nemmadi-dairy-farm.koyeb.app/api/myt-daily-yield-records/${query}`;
       const params = new URLSearchParams();
       
       if (searchTerm) params.append('search', searchTerm);
@@ -307,8 +307,8 @@ const MMTDailyYieldRecords: React.FC<MMTDailyYieldRecordsProps> = ({ query = '' 
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/myt-daily-yield-records/${editingRecord.id}/`
-        : 'http://localhost:8000/api/myt-daily-yield-records/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/myt-daily-yield-records/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/myt-daily-yield-records/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -398,7 +398,7 @@ const MMTDailyYieldRecords: React.FC<MMTDailyYieldRecordsProps> = ({ query = '' 
         return;
       }
       
-      let url = 'http://localhost:8000/api/myt-daily-yield-records/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/myt-daily-yield-records/export/';
       const params = new URLSearchParams();
 
       if (user.role === 'admin') {
@@ -474,7 +474,7 @@ const MMTDailyYieldRecords: React.FC<MMTDailyYieldRecordsProps> = ({ query = '' 
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/myt-daily-yield-records/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/myt-daily-yield-records/${id}/`, {
           method: 'DELETE',
           headers: { 'Authorization': `Bearer ${user.token}` }
         });

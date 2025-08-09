@@ -55,7 +55,7 @@ useEffect(() => {
     try {
       // Changed from ?active=true to ?is_active=true
       const response = await fetch(
-        'http://localhost:8000/api/breeding-calving-records/?is_active=true', 
+        'https://nemmadi-dairy-farm.koyeb.app/api/breeding-calving-records/?is_active=true', 
         {
           headers: { 'Authorization': `Bearer ${user.token}` }
         }
@@ -121,7 +121,7 @@ useEffect(() => {
         return;
       }
       
-      const url = `http://localhost:8000/api/calf-feeding/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/calf-feeding/${query}`;
       const response = await fetch(url, {
         headers: { 'Authorization': `Bearer ${user.token}` }
       });
@@ -177,8 +177,8 @@ useEffect(() => {
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/calf-feeding/${editingRecord.id}/`
-        : 'http://localhost:8000/api/calf-feeding/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/calf-feeding/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/calf-feeding/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -265,7 +265,7 @@ useEffect(() => {
       }
 
 
-      let url = 'http://localhost:8000/api/calf-feeding/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/calf-feeding/export/';
       const params = new URLSearchParams();
 
       if (user.role === 'admin') {
@@ -317,7 +317,7 @@ useEffect(() => {
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/calf-feeding/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/calf-feeding/${id}/`, {
           method: 'DELETE',
           headers: { 'Authorization': `Bearer ${user.token}` }
         });

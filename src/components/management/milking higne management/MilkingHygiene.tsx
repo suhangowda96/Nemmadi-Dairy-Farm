@@ -70,7 +70,7 @@ const MilkingHygiene: React.FC<MilkingHygieneProps> = ({ query = '' }) => {
             if (!user || !user.token) return;
             
             try {
-              const response = await fetch('http://localhost:8000/api/animals/', {
+              const response = await fetch('https://nemmadi-dairy-farm.koyeb.app/api/animals/', {
                 headers: {
                   'Authorization': `Bearer ${user.token}`
                 }
@@ -129,7 +129,7 @@ const MilkingHygiene: React.FC<MilkingHygieneProps> = ({ query = '' }) => {
         return;
       }
       
-      const url = `http://localhost:8000/api/milking-hygiene/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/milking-hygiene/${query}`;
         const response = await fetch(url, {
           headers: {
             'Authorization': `Bearer ${user.token}`
@@ -193,8 +193,8 @@ const MilkingHygiene: React.FC<MilkingHygieneProps> = ({ query = '' }) => {
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/milking-hygiene/${editingRecord.id}/`
-        : 'http://localhost:8000/api/milking-hygiene/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/milking-hygiene/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/milking-hygiene/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -271,7 +271,7 @@ const MilkingHygiene: React.FC<MilkingHygieneProps> = ({ query = '' }) => {
     }
       
       // Build URL with parameters
-      let url = 'http://localhost:8000/api/milking-hygiene/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/milking-hygiene/export/';
       const params = new URLSearchParams();
 
       if (isAdmin) {
@@ -328,7 +328,7 @@ const MilkingHygiene: React.FC<MilkingHygieneProps> = ({ query = '' }) => {
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/milking-hygiene/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/milking-hygiene/${id}/`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${user.token}`

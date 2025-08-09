@@ -83,7 +83,7 @@ const CFRCalffeedregister: React.FC<CFRCalffeedregisterProps> = ({ query = '' })
       if (endDate) params.append('end_date', formatDateForAPI(endDate));
       if (searchTerm) params.append('search', searchTerm);
       
-      let url = `http://localhost:8000/api/cfr-calf-feed/${query}`;
+      let url = `https://nemmadi-dairy-farm.koyeb.app/api/cfr-calf-feed/${query}`;
       if (params.toString()) url += `?${params.toString()}`;
       
       const response = await fetch(url, {
@@ -161,7 +161,7 @@ const CFRCalffeedregister: React.FC<CFRCalffeedregisterProps> = ({ query = '' })
         return;
       }
       
-      let url = 'http://localhost:8000/api/cfr-calf-feed/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/cfr-calf-feed/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) {

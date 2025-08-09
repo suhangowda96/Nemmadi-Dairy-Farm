@@ -110,7 +110,7 @@ const PVPoTracker: React.FC<PVPoTrackerProps> = ({ query = '' }) => {
         return;
       }
       
-      const url = `http://localhost:8000/api/PVpo-trackers/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/PVpo-trackers/${query}`;
       const response = await fetch(url, {
         headers: {
           'Authorization': `Bearer ${user.token}`
@@ -188,7 +188,7 @@ const PVPoTracker: React.FC<PVPoTrackerProps> = ({ query = '' }) => {
         user: user.id
       };
 
-      const url = `http://localhost:8000/api/PVpo-trackers/${editingRecord.id}/`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/PVpo-trackers/${editingRecord.id}/`;
       const method = 'PUT';
       
       const response = await fetch(url, {

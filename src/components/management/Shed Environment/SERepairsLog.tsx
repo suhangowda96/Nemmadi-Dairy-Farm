@@ -59,7 +59,7 @@ const SERepairsLog: React.FC<SERepairsLogProps> = ({ query = '' }) => {
         return;
       }
       
-      const url = `http://localhost:8000/api/se-repairs-log/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/se-repairs-log/${query}`;
       const response = await fetch(url, {
         headers: { 'Authorization': `Bearer ${user.token}` }
       });
@@ -114,8 +114,8 @@ const SERepairsLog: React.FC<SERepairsLogProps> = ({ query = '' }) => {
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/se-repairs-log/${editingRecord.id}/`
-        : 'http://localhost:8000/api/se-repairs-log/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/se-repairs-log/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/se-repairs-log/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -193,7 +193,7 @@ const SERepairsLog: React.FC<SERepairsLogProps> = ({ query = '' }) => {
         return;
       }
       
-      let url = 'http://localhost:8000/api/se-repairs-log/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/se-repairs-log/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) params.append('all_supervisors', 'true');
@@ -238,7 +238,7 @@ const SERepairsLog: React.FC<SERepairsLogProps> = ({ query = '' }) => {
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/se-repairs-log/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/se-repairs-log/${id}/`, {
           method: 'DELETE',
           headers: { 'Authorization': `Bearer ${user.token}` }
         });

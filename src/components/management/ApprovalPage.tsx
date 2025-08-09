@@ -69,7 +69,7 @@ const ApprovalPage: React.FC<ApprovalPageProps> = ({ query = '' }) => {
       }
       
       // Create base URL
-      const baseUrl = `http://localhost:8000/api/PVpurchase-approvals/`;
+      const baseUrl = `https://nemmadi-dairy-farm.koyeb.app/api/PVpurchase-approvals/`;
       
       // Create URLSearchParams for all parameters
       const params = new URLSearchParams();
@@ -157,7 +157,7 @@ const ApprovalPage: React.FC<ApprovalPageProps> = ({ query = '' }) => {
       };
 
       const response = await fetch(
-        `http://localhost:8000/api/PVpurchase-approvals/${actionRecord.id}/approve-reject/`, 
+        `https://nemmadi-dairy-farm.koyeb.app/api/PVpurchase-approvals/${actionRecord.id}/approve-reject/`, 
         {
           method: 'PATCH',
           headers: {

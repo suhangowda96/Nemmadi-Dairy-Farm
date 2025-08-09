@@ -202,7 +202,7 @@ const AllSupervisorsData: React.FC = () => {
           return;
         }
         
-        const response = await axios.get('http://localhost:8000/api/users/', {
+        const response = await axios.get('https://nemmadi-dairy-farm.koyeb.app/api/users/', {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'

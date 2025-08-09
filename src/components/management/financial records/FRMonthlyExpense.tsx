@@ -72,7 +72,7 @@ const FRMonthlyExpense: React.FC<FinancialExpenseProps> = ({ query = '' }) => {
       if (endDate) params.append('end_date', formatDateForAPI(endDate));
       if (searchTerm) params.append('search', searchTerm);
       
-      let url = `http://localhost:8000/api/fr-monthly-expense/${query}`;
+      let url = `https://nemmadi-dairy-farm.koyeb.app/api/fr-monthly-expense/${query}`;
       if (params.toString()) url += `?${params.toString()}`;
       
       const response = await fetch(url, {
@@ -165,7 +165,7 @@ const FRMonthlyExpense: React.FC<FinancialExpenseProps> = ({ query = '' }) => {
         return;
       }
       
-      let url = 'http://localhost:8000/api/fr-monthly-expense/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/fr-monthly-expense/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) {

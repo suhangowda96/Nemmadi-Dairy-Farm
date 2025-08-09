@@ -77,7 +77,7 @@ const HealthVaccinationRecords: React.FC<HealthVaccinationRecordsProps> = ({ que
       if (!user || !user.token) return;
       
       try {
-        const response = await fetch('http://localhost:8000/api/vaccine-inventory/', {
+        const response = await fetch('https://nemmadi-dairy-farm.koyeb.app/api/vaccine-inventory/', {
           headers: {
             'Authorization': `Bearer ${user.token}`
           }
@@ -103,7 +103,7 @@ const HealthVaccinationRecords: React.FC<HealthVaccinationRecordsProps> = ({ que
       if (!user || !user.token) return;
       
       try {
-        const response = await fetch('http://localhost:8000/api/animals/', {
+        const response = await fetch('https://nemmadi-dairy-farm.koyeb.app/api/animals/', {
           headers: {
             'Authorization': `Bearer ${user.token}`
           }
@@ -130,7 +130,7 @@ const HealthVaccinationRecords: React.FC<HealthVaccinationRecordsProps> = ({ que
       
       try {
         const response = await fetch(
-          'http://localhost:8000/api/breeding-calving-records/?is_active=true', 
+          'https://nemmadi-dairy-farm.koyeb.app/api/breeding-calving-records/?is_active=true', 
           {
             headers: { 'Authorization': `Bearer ${user.token}` }
           }
@@ -220,7 +220,7 @@ const HealthVaccinationRecords: React.FC<HealthVaccinationRecordsProps> = ({ que
         return;
       }
       
-      let url = `http://localhost:8000/api/health-vaccination-records/${query}`;
+      let url = `https://nemmadi-dairy-farm.koyeb.app/api/health-vaccination-records/${query}`;
       const params = new URLSearchParams();
       
       if (allSupervisors && isAdmin) {
@@ -303,8 +303,8 @@ const HealthVaccinationRecords: React.FC<HealthVaccinationRecordsProps> = ({ que
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/health-vaccination-records/${editingRecord.id}/`
-        : 'http://localhost:8000/api/health-vaccination-records/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/health-vaccination-records/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/health-vaccination-records/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -401,7 +401,7 @@ const HealthVaccinationRecords: React.FC<HealthVaccinationRecordsProps> = ({ que
         return;
       }
       
-      let url = 'http://localhost:8000/api/health-vaccination-records/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/health-vaccination-records/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) {
@@ -454,7 +454,7 @@ const HealthVaccinationRecords: React.FC<HealthVaccinationRecordsProps> = ({ que
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/health-vaccination-records/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/health-vaccination-records/${id}/`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${user.token}`

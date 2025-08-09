@@ -60,7 +60,7 @@ const FinancialRecord: React.FC<FinancialRecordProps> = ({ query = '' }) => {
       if (startDate) params.append('start_date', formatDateForAPI(startDate));
       if (endDate) params.append('end_date', formatDateForAPI(endDate));
       
-      let url = `http://localhost:8000/api/financial-records/${query}`;
+      let url = `https://nemmadi-dairy-farm.koyeb.app/api/financial-records/${query}`;
       if (params.toString()) url += `?${params.toString()}`;
       
       const response = await fetch(url, {
@@ -139,7 +139,7 @@ const FinancialRecord: React.FC<FinancialRecordProps> = ({ query = '' }) => {
         return;
       }
       
-      let url = 'http://localhost:8000/api/financial-records/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/financial-records/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) {

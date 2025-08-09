@@ -108,7 +108,7 @@ const TrackingDashboard: React.FC<TrackingDashboardProps> = ({ query = '' }) => 
           return;
         }
 
-        const response = await fetch(`http://localhost:8000/api/dashboard-tracking/${query}`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/dashboard-tracking/${query}`, {
           headers: { 'Authorization': `Bearer ${user.token}` },
         });
         
@@ -150,7 +150,7 @@ const TrackingDashboard: React.FC<TrackingDashboardProps> = ({ query = '' }) => 
         if (dataType === 'milk') {
           // Fetch milk yield data
           const response = await fetch(
-            `http://localhost:8000/api/myt-milk-yield/monthly-summary/${query}`, 
+            `https://nemmadi-dairy-farm.koyeb.app/api/myt-milk-yield/monthly-summary/${query}`, 
             {
               headers: { 'Authorization': `Bearer ${user.token}` }
             }
@@ -163,7 +163,7 @@ const TrackingDashboard: React.FC<TrackingDashboardProps> = ({ query = '' }) => 
         } else {
           // Fetch financial records
           const response = await fetch(
-            `http://localhost:8000/api/financial-records/${query}`, 
+            `https://nemmadi-dairy-farm.koyeb.app/api/financial-records/${query}`, 
             {
               headers: { 'Authorization': `Bearer ${user.token}` }
             }

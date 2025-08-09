@@ -81,7 +81,7 @@ const SAMonthlyPerformance: React.FC<StaffPerformanceProps> = ({ query = '' }) =
       if (endDate) params.append('end_date', formatDateForAPI(endDate));
       if (searchTerm) params.append('search', searchTerm);
       
-      let url = `http://localhost:8000/api/sa-monthly-performance/${query}`;
+      let url = `https://nemmadi-dairy-farm.koyeb.app/api/sa-monthly-performance/${query}`;
       if (params.toString()) url += `?${params.toString()}`;
       
       const response = await fetch(url, {
@@ -180,7 +180,7 @@ const SAMonthlyPerformance: React.FC<StaffPerformanceProps> = ({ query = '' }) =
         return;
       }
       
-      let url = 'http://localhost:8000/api/sa-monthly-performance/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/sa-monthly-performance/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) {

@@ -68,7 +68,7 @@ const ShedEnvironment: React.FC<ShedEnvironmentProps> = ({ query = '' }) => {
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/shed-environment/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/shed-environment/${id}/`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${user.token}`
@@ -112,7 +112,7 @@ const ShedEnvironment: React.FC<ShedEnvironmentProps> = ({ query = '' }) => {
         return;
       }
       
-      const url = `http://localhost:8000/api/shed-environment/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/shed-environment/${query}`;
       const response = await fetch(url, {
         headers: {
           'Authorization': `Bearer ${user.token}`
@@ -175,8 +175,8 @@ const ShedEnvironment: React.FC<ShedEnvironmentProps> = ({ query = '' }) => {
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/shed-environment/${editingRecord.id}/`
-        : 'http://localhost:8000/api/shed-environment/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/shed-environment/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/shed-environment/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -252,7 +252,7 @@ const ShedEnvironment: React.FC<ShedEnvironmentProps> = ({ query = '' }) => {
       return;
     }
       
-      let url = 'http://localhost:8000/api/shed-environment/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/shed-environment/export/';
       const params = new URLSearchParams();
       
       if (startDate) params.append('start_date', formatDateForBackend(startDate));

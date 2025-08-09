@@ -54,7 +54,7 @@ useEffect(() => {
     try {
       // Changed from ?active=true to ?is_active=true
       const response = await fetch(
-        'http://localhost:8000/api/breeding-calving-records/?is_active=true', 
+        'https://nemmadi-dairy-farm.koyeb.app/api/breeding-calving-records/?is_active=true', 
         {
           headers: { 'Authorization': `Bearer ${user.token}` }
         }
@@ -122,7 +122,7 @@ useEffect(() => {
         return;
       }
       
-      const url = `http://localhost:8000/api/weaned-calf/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/weaned-calf/${query}`;
       const response = await fetch(url, {
         headers: { 'Authorization': `Bearer ${user.token}` }
       });
@@ -174,8 +174,8 @@ useEffect(() => {
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/weaned-calf/${editingRecord.id}/`
-        : 'http://localhost:8000/api/weaned-calf/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/weaned-calf/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/weaned-calf/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -255,7 +255,7 @@ useEffect(() => {
       return;
     }
 
-    let url = `http://localhost:8000/api/weaned-calf/export/`;
+    let url = `https://nemmadi-dairy-farm.koyeb.app/api/weaned-calf/export/`;
     const params = new URLSearchParams();
     
     // Add context parameters
@@ -310,7 +310,7 @@ useEffect(() => {
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/weaned-calf/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/weaned-calf/${id}/`, {
           method: 'DELETE',
           headers: { 'Authorization': `Bearer ${user.token}` }
         });

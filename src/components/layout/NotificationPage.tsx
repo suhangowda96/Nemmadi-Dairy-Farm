@@ -62,7 +62,7 @@ const NotificationPage: React.FC = () => {
     
     try {
       const response = await axios.get(
-        'http://localhost:8000/api/notifications/', 
+        'https://nemmadi-dairy-farm.koyeb.app/api/notifications/', 
         {
           headers: {
             Authorization: `Bearer ${user.token}`
@@ -88,7 +88,7 @@ const NotificationPage: React.FC = () => {
     
     try {
       await axios.delete(
-        'http://localhost:8000/api/notifications/clear-all/', 
+        'https://nemmadi-dairy-farm.koyeb.app/api/notifications/clear-all/', 
         {
           headers: {
             Authorization: `Bearer ${user.token}`

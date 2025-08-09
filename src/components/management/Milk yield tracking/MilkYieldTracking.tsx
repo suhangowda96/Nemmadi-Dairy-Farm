@@ -85,7 +85,7 @@ const MilkYieldTracking: React.FC<MilkYieldSummaryProps> = ({ query = '' }) => {
       if (endDate) params.append('end_date', formatDateForAPI(endDate));
       if (searchTerm) params.append('search', searchTerm);
       
-      let url = `http://localhost:8000/api/myt-milk-yield/monthly-summary/${query}`;
+      let url = `https://nemmadi-dairy-farm.koyeb.app/api/myt-milk-yield/monthly-summary/${query}`;
       if (params.toString()) url += `?${params.toString()}`;
       
       const response = await fetch(url, {
@@ -176,7 +176,7 @@ const MilkYieldTracking: React.FC<MilkYieldSummaryProps> = ({ query = '' }) => {
         return;
       }
       
-      let url = 'http://localhost:8000/api/myt-monthly-summary/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/myt-monthly-summary/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) {

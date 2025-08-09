@@ -61,7 +61,7 @@ const BreedingHeartDetection: React.FC<HeartDetectionProps> = ({ query = '' }) =
           if (!user || !user.token) return;
           
           try {
-            const response = await fetch('http://localhost:8000/api/animals/', {
+            const response = await fetch('https://nemmadi-dairy-farm.koyeb.app/api/animals/', {
               headers: {
                 'Authorization': `Bearer ${user.token}`
               }
@@ -121,7 +121,7 @@ const BreedingHeartDetection: React.FC<HeartDetectionProps> = ({ query = '' }) =
         return;
       }
       
-      const url = `http://localhost:8000/api/heart-detections/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/heart-detections/${query}`;
       const response = await fetch(url, {
         headers: {
           'Authorization': `Bearer ${user.token}`
@@ -188,8 +188,8 @@ const BreedingHeartDetection: React.FC<HeartDetectionProps> = ({ query = '' }) =
       console.log("Submitting payload:", payload);  // Debug log
       
       const url = editingRecord 
-        ? `http://localhost:8000/api/heart-detections/${editingRecord.id}/`
-        : 'http://localhost:8000/api/heart-detections/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/heart-detections/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/heart-detections/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -286,7 +286,7 @@ const BreedingHeartDetection: React.FC<HeartDetectionProps> = ({ query = '' }) =
         return;
       }
       
-      let url = 'http://localhost:8000/api/heart-detections/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/heart-detections/export/';
       const params = new URLSearchParams();
       
       if (user.role === 'admin') {
@@ -338,7 +338,7 @@ const BreedingHeartDetection: React.FC<HeartDetectionProps> = ({ query = '' }) =
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/heart-detections/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/heart-detections/${id}/`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${user.token}`

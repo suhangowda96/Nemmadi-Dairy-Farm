@@ -59,7 +59,7 @@ const MHMilkingHygiene: React.FC<MilkingHygieneProps> = ({ query = '' }) => {
               if (!user || !user.token) return;
               
               try {
-                const response = await fetch('http://localhost:8000/api/animals/', {
+                const response = await fetch('https://nemmadi-dairy-farm.koyeb.app/api/animals/', {
                   headers: {
                     'Authorization': `Bearer ${user.token}`
                   }
@@ -120,7 +120,7 @@ const MHMilkingHygiene: React.FC<MilkingHygieneProps> = ({ query = '' }) => {
         return;
       }
       
-      const url = `http://localhost:8000/api/mhmilking-hygiene/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/mhmilking-hygiene/${query}`;
       const response = await fetch(url, {
         headers: {
           'Authorization': `Bearer ${user.token}`
@@ -177,8 +177,8 @@ const MHMilkingHygiene: React.FC<MilkingHygieneProps> = ({ query = '' }) => {
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/mhmilking-hygiene/${editingRecord.id}/`
-        : 'http://localhost:8000/api/mhmilking-hygiene/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/mhmilking-hygiene/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/mhmilking-hygiene/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -269,7 +269,7 @@ const MHMilkingHygiene: React.FC<MilkingHygieneProps> = ({ query = '' }) => {
         return;
       }
       
-      let url = 'http://localhost:8000/api/mhmilking-hygiene/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/mhmilking-hygiene/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) {
@@ -322,7 +322,7 @@ const MHMilkingHygiene: React.FC<MilkingHygieneProps> = ({ query = '' }) => {
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/mhmilking-hygiene/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/mhmilking-hygiene/${id}/`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${user.token}`

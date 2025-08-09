@@ -76,7 +76,7 @@ const VaccineInventory: React.FC<VaccineInventoryProps> = ({ query = '' }) => {
         });
       }
       
-      const response = await axios.get('http://localhost:8000/api/vaccine-inventory/', {
+      const response = await axios.get('https://nemmadi-dairy-farm.koyeb.app/api/vaccine-inventory/', {
         params,
         headers: {
           'Authorization': `Bearer ${user.token}`
@@ -183,7 +183,7 @@ const VaccineInventory: React.FC<VaccineInventoryProps> = ({ query = '' }) => {
         });
       }
       
-      const response = await axios.get('http://localhost:8000/api/vaccine-inventory/export/', {
+      const response = await axios.get('https://nemmadi-dairy-farm.koyeb.app/api/vaccine-inventory/export/', {
         params,
         headers: {
           'Authorization': `Bearer ${user.token}`

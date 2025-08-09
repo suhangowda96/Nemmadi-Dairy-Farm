@@ -66,7 +66,7 @@ const BreedingTracking: React.FC<BreedingSummaryProps> = ({ query = '' }) => {
       if (endDate) params.append('end_date', formatDateForAPI(endDate));
       if (searchTerm) params.append('search', searchTerm);
       
-      let url = `http://localhost:8000/api/breeding-summary/${query}`;
+      let url = `https://nemmadi-dairy-farm.koyeb.app/api/breeding-summary/${query}`;
       if (params.toString()) url += `?${params.toString()}`;
       
       const response = await fetch(url, {
@@ -182,7 +182,7 @@ const BreedingTracking: React.FC<BreedingSummaryProps> = ({ query = '' }) => {
         return;
       }
       
-      let url = 'http://localhost:8000/api/breeding-summary/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/breeding-summary/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) {

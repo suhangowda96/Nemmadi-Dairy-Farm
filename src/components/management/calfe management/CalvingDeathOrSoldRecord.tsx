@@ -62,7 +62,7 @@ const CalvingDeathOrSoldLog: React.FC<DeathOrSoldLogProps> = ({ query = '' }) =>
       
       try {
         const response = await fetch(
-          'http://localhost:8000/api/breeding-calving-records/?is_active=true', 
+          'https://nemmadi-dairy-farm.koyeb.app/api/breeding-calving-records/?is_active=true', 
           { headers: { 'Authorization': `Bearer ${user.token}` } }
         );
         
@@ -124,7 +124,7 @@ const CalvingDeathOrSoldLog: React.FC<DeathOrSoldLogProps> = ({ query = '' }) =>
         return;
       }
       
-      const url = `http://localhost:8000/api/calving-death-sold-records/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/calving-death-sold-records/${query}`;
       const response = await fetch(url, {
         headers: { 'Authorization': `Bearer ${user.token}` }
       });
@@ -184,8 +184,8 @@ const CalvingDeathOrSoldLog: React.FC<DeathOrSoldLogProps> = ({ query = '' }) =>
       }
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/calving-death-sold-records/${editingRecord.id}/`
-        : 'http://localhost:8000/api/calving-death-sold-records/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/calving-death-sold-records/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/calving-death-sold-records/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -265,7 +265,7 @@ const CalvingDeathOrSoldLog: React.FC<DeathOrSoldLogProps> = ({ query = '' }) =>
         return;
       }
 
-      let url = 'http://localhost:8000/api/calving-death-sold-records/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/calving-death-sold-records/export/';
       const params = new URLSearchParams();
       
       if (user.role === 'admin') {
@@ -317,7 +317,7 @@ const CalvingDeathOrSoldLog: React.FC<DeathOrSoldLogProps> = ({ query = '' }) =>
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/calving-death-sold-records/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/calving-death-sold-records/${id}/`, {
           method: 'DELETE',
           headers: { 'Authorization': `Bearer ${user.token}` }
         });

@@ -72,7 +72,7 @@ const ProfilePage: React.FC = () => {
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/users/?role=${activeTab}`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/users/?role=${activeTab}`, {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
@@ -149,7 +149,7 @@ const ProfilePage: React.FC = () => {
       const token = getToken();
       if (!token) throw new Error('Authentication token not found');
       
-      const response = await fetch(`http://localhost:8000/api/users/${selectedAdminUser.id}/update-username/`, {
+      const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/users/${selectedAdminUser.id}/update-username/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -192,7 +192,7 @@ const ProfilePage: React.FC = () => {
       const token = getToken();
       if (!token) throw new Error('Authentication token not found');
       
-      const response = await fetch(`http://localhost:8000/api/users/${selectedAdminUser.id}/change-password/`, {
+      const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/users/${selectedAdminUser.id}/change-password/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

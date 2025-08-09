@@ -68,7 +68,7 @@ const CRFDailyCalfFeedRegister: React.FC<DailyCalfFeedProps> = ({ query = '' }) 
       try {
         // Changed from ?active=true to ?is_active=true
         const response = await fetch(
-          'http://localhost:8000/api/breeding-calving-records/?is_active=true', 
+          'https://nemmadi-dairy-farm.koyeb.app/api/breeding-calving-records/?is_active=true', 
           {
             headers: { 'Authorization': `Bearer ${user.token}` }
           }
@@ -128,7 +128,7 @@ const CRFDailyCalfFeedRegister: React.FC<DailyCalfFeedProps> = ({ query = '' }) 
         return;
       }
       
-      const url = `http://localhost:8000/api/calf-feed-register/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/calf-feed-register/${query}`;
       const response = await fetch(url, {
         headers: {
           'Authorization': `Bearer ${user.token}`
@@ -188,8 +188,8 @@ const CRFDailyCalfFeedRegister: React.FC<DailyCalfFeedProps> = ({ query = '' }) 
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/calf-feed-register/${editingRecord.id}/`
-        : 'http://localhost:8000/api/calf-feed-register/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/calf-feed-register/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/calf-feed-register/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -286,7 +286,7 @@ const CRFDailyCalfFeedRegister: React.FC<DailyCalfFeedProps> = ({ query = '' }) 
         return date.toISOString().split('T')[0];
         };
         
-        let url = 'http://localhost:8000/api/calf-feed-register/export/';
+        let url = 'https://nemmadi-dairy-farm.koyeb.app/api/calf-feed-register/export/';
         const params = new URLSearchParams();
         
         // Add supervisor parameters
@@ -345,7 +345,7 @@ const CRFDailyCalfFeedRegister: React.FC<DailyCalfFeedProps> = ({ query = '' }) 
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/calf-feed-register/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/calf-feed-register/${id}/`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${user.token}`

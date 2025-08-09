@@ -48,7 +48,7 @@ const BreedingAIRecords: React.FC<BreedingRecordProps> = ({ query = '' }) => {
           if (!user || !user.token) return;
           
           try {
-            const response = await fetch('http://localhost:8000/api/animals/', {
+            const response = await fetch('https://nemmadi-dairy-farm.koyeb.app/api/animals/', {
               headers: {
                 'Authorization': `Bearer ${user.token}`
               }
@@ -109,7 +109,7 @@ const BreedingAIRecords: React.FC<BreedingRecordProps> = ({ query = '' }) => {
         return;
       }
       
-      const url = `http://localhost:8000/api/ai-records/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/ai-records/${query}`;
       const response = await fetch(url, {
         headers: { 'Authorization': `Bearer ${user.token}` }
       });
@@ -162,8 +162,8 @@ const BreedingAIRecords: React.FC<BreedingRecordProps> = ({ query = '' }) => {
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/ai-records/${editingRecord.id}/`
-        : 'http://localhost:8000/api/ai-records/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/ai-records/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/ai-records/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -225,7 +225,7 @@ const BreedingAIRecords: React.FC<BreedingRecordProps> = ({ query = '' }) => {
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/ai-records/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/ai-records/${id}/`, {
           method: 'DELETE',
           headers: { 'Authorization': `Bearer ${user.token}` }
         });
@@ -262,7 +262,7 @@ const BreedingAIRecords: React.FC<BreedingRecordProps> = ({ query = '' }) => {
         return;
       }
       
-      let url = 'http://localhost:8000/api/ai-records/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/ai-records/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) params.append('all_supervisors', 'true');

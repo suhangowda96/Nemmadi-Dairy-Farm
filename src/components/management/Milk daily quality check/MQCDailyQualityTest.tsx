@@ -67,7 +67,7 @@ const MQCDailyQualityTest: React.FC<MQCDailyQualityTestProps> = ({ query = '' })
         return;
       }
       
-      const url = `http://localhost:8000/api/mqc-daily-quality-test/${query}`;
+      const url = `https://nemmadi-dairy-farm.koyeb.app/api/mqc-daily-quality-test/${query}`;
       const response = await fetch(url, {
         headers: {
           'Authorization': `Bearer ${user.token}`
@@ -123,8 +123,8 @@ const MQCDailyQualityTest: React.FC<MQCDailyQualityTestProps> = ({ query = '' })
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/mqc-daily-quality-test/${editingRecord.id}/`
-        : 'http://localhost:8000/api/mqc-daily-quality-test/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/mqc-daily-quality-test/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/mqc-daily-quality-test/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -213,7 +213,7 @@ const MQCDailyQualityTest: React.FC<MQCDailyQualityTestProps> = ({ query = '' })
         return;
       }
       
-      let url = 'http://localhost:8000/api/mqc-daily-quality-test/export/';
+      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/mqc-daily-quality-test/export/';
       const params = new URLSearchParams();
       
       if (isAdmin) {
@@ -265,7 +265,7 @@ const MQCDailyQualityTest: React.FC<MQCDailyQualityTestProps> = ({ query = '' })
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/mqc-daily-quality-test/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/mqc-daily-quality-test/${id}/`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${user.token}`

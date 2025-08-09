@@ -73,7 +73,7 @@ const CalfRecords: React.FC<CalfRecordsProps> = ({ query = '' }) => {
       try {
         // Changed from ?active=true to ?is_active=true
         const response = await fetch(
-          'http://localhost:8000/api/breeding-calving-records/?is_active=true', 
+          'https://nemmadi-dairy-farm.koyeb.app/api/breeding-calving-records/?is_active=true', 
           {
             headers: { 'Authorization': `Bearer ${user.token}` }
           }
@@ -133,7 +133,7 @@ const CalfRecords: React.FC<CalfRecordsProps> = ({ query = '' }) => {
     }
     
     // Use query prop in the URL
-    const url = `http://localhost:8000/api/calf-records/${query}`;
+    const url = `https://nemmadi-dairy-farm.koyeb.app/api/calf-records/${query}`;
     const response = await fetch(url, {
       headers: {
         'Authorization': `Bearer ${user.token}`
@@ -196,8 +196,8 @@ const CalfRecords: React.FC<CalfRecordsProps> = ({ query = '' }) => {
       };
 
       const url = editingRecord 
-        ? `http://localhost:8000/api/calf-records/${editingRecord.id}/`
-        : 'http://localhost:8000/api/calf-records/';
+        ? `https://nemmadi-dairy-farm.koyeb.app/api/calf-records/${editingRecord.id}/`
+        : 'https://nemmadi-dairy-farm.koyeb.app/api/calf-records/';
       
       const method = editingRecord ? 'PUT' : 'POST';
       
@@ -318,7 +318,7 @@ const CalfRecords: React.FC<CalfRecordsProps> = ({ query = '' }) => {
           return;
         }
         
-        const response = await fetch(`http://localhost:8000/api/calf-records/${id}/`, {
+        const response = await fetch(`https://nemmadi-dairy-farm.koyeb.app/api/calf-records/${id}/`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${user.token}`
