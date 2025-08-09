@@ -7,22 +7,6 @@ import { useAuth } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import DairyLogo from '../../../images/nemmadi.png';
-import { initializeApp } from 'firebase/app';
-import { getMessaging, getToken, onMessage } from 'firebase/messaging';
-
-// Firebase configuration (replace with your own)
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const messaging = getMessaging(app);
 
 interface Notification {
   id: number;
@@ -296,92 +280,18 @@ const getEventBgColor = (type: string) => {
   }
 };
 
-// Push notification setup with Firebase support
+// Push notification setup
 const usePushNotifications = () => {
   const [isSupported, setIsSupported] = useState(false);
   const [permission, setPermission] = useState<NotificationPermission>('default');
-  const [fcmToken, setFcmToken] = useState<string | null>(null);
 
   useEffect(() => {
-    // Check if browser supports notifications
-    const browserSupported = 'Notification' in window;
-    setIsSupported(browserSupported);
+    // Check if Notification API is supported
+    const supported = 'Notification' in window;
+    setIsSupported(supported);
     
-    if (browserSupported) {
+    if (supported) {
       setPermission(Notification.permission);
-    }
-    
-    // Initialize Firebase messaging if supported
-    if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
-      // Request notification permission
-      const requestPermission = async () => {
-        try {
-          const permission = await Notification.requestPermission();
-          setPermission(permission);
-          
-          if (permission === 'granted') {
-            console.log('Notification permission granted.');
-            
-            // Get FCM token for mobile
-            try {
-              const token = await getToken(messaging, { 
-                vapidKey: 'YOUR_VAPID_KEY' // Replace with your VAPID key
-              });
-              
-              if (token) {
-                setFcmToken(token);
-                console.log('FCM token:', token);
-                
-                // Send token to your server to associate with user
-                if (localStorage.getItem('userToken')) {
-                  axios.post('/api/store-fcm-token', { token }, {
-                    headers: {
-                      Authorization: `Bearer ${localStorage.getItem('userToken')}`
-                    }
-                  });
-                }
-              }
-            } catch (fcmError) {
-              console.error('Error getting FCM token:', fcmError);
-            }
-          }
-        } catch (error) {
-          console.error('Error requesting notification permission:', error);
-        }
-      };
-      
-      // Request permission if not already granted
-      if (Notification.permission === 'default') {
-        requestPermission();
-      } else if (Notification.permission === 'granted') {
-        // Get FCM token if permission already granted
-        getToken(messaging, { vapidKey: 'YOUR_VAPID_KEY' })
-          .then(token => {
-            if (token) {
-              setFcmToken(token);
-              console.log('FCM token:', token);
-            }
-          })
-          .catch(error => {
-            console.error('Error getting FCM token:', error);
-          });
-      }
-      
-      // Handle foreground messages
-      onMessage(messaging, (payload) => {
-        console.log('Message received in foreground:', payload);
-        const notificationTitle = payload.notification?.title || 'New Notification';
-        const notificationOptions = {
-          body: payload.notification?.body || 'You have a new message',
-          icon: DairyLogo,
-          data: payload.data
-        };
-        
-        // Show notification
-        if (Notification.permission === 'granted') {
-          new Notification(notificationTitle, notificationOptions);
-        }
-      });
     }
   }, []);
 
@@ -389,14 +299,9 @@ const usePushNotifications = () => {
     if (!isSupported) return false;
     
     try {
-      const permission = await Notification.requestPermission();
-      setPermission(permission);
-      
-      if (permission === 'granted') {
-        console.log('Notification permission granted.');
-        return true;
-      }
-      return false;
+      const newPermission = await Notification.requestPermission();
+      setPermission(newPermission);
+      return newPermission === 'granted';
     } catch (error) {
       console.error('Error requesting notification permission:', error);
       return false;
@@ -406,21 +311,20 @@ const usePushNotifications = () => {
   const showNotification = useCallback((title: string, options?: NotificationOptions) => {
     if (!isSupported || permission !== 'granted') return;
     
-    // Show notification using browser API
-    new Notification(title, {
-      ...options,
-      icon: DairyLogo,
-    });
+    try {
+      // Use the simpler Notification API
+      new Notification(title, {
+        ...options,
+        icon: DairyLogo,
+      });
+    } catch (error) {
+      console.error('Error showing notification:', error);
+    }
   }, [isSupported, permission]);
 
-  return { 
-    isSupported, 
-    permission, 
-    fcmToken,
-    requestPermission, 
-    showNotification 
-  };
+  return { isSupported, permission, requestPermission, showNotification };
 };
+
 
 const Header: React.FC = () => {
   const { user } = useAuth();
@@ -461,7 +365,6 @@ const Header: React.FC = () => {
   const { 
     isSupported: pushSupported,
     permission: pushPermission,
-    fcmToken,
     requestPermission: requestPushPermission,
     showNotification
   } = usePushNotifications();
@@ -507,7 +410,7 @@ const Header: React.FC = () => {
     
     try {
       const response = await axios.get(
-        'http://localhost:8000/api/notifications/', 
+        'https://nemmadi-dairy-farm.koyeb.app/api/notifications/', 
         {
           headers: {
             Authorization: `Bearer ${user.token}`
@@ -541,7 +444,7 @@ const Header: React.FC = () => {
       }
 
       const response = await axios.get(
-        'http://localhost:8000/api/upcoming-events/', 
+        'https://nemmadi-dairy-farm.koyeb.app/api/upcoming-events/', 
         {
           headers: {
             Authorization: `Bearer ${user.token}`
