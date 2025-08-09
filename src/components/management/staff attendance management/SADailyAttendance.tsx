@@ -34,6 +34,17 @@ interface SADailyAttendanceProps {
   query?: string;
 }
 
+// Utility function to format time as HH:MM
+const formatTime = (time: string | null | undefined): string => {
+  if (!time) return '-';
+  
+  // Split the time string by colon
+  const parts = time.split(':');
+  
+  // Return formatted time as HH:MM if we have at least 2 parts
+  return parts.length >= 2 ? `${parts[0]}:${parts[1]}` : time;
+};
+
 const SADailyAttendance: React.FC<SADailyAttendanceProps> = ({ query = '' }) => {
   const { user } = useAuth();
   const webcamRef = useRef<Webcam>(null);
@@ -64,6 +75,7 @@ const SADailyAttendance: React.FC<SADailyAttendanceProps> = ({ query = '' }) => 
     employee?: Employee;
     matchedEmployees?: Employee[];
     image: string;
+    remarks: string; // New remarks field for manual input
   } | null>(null);
 
   const generateChallenge = () => {
@@ -88,8 +100,8 @@ const SADailyAttendance: React.FC<SADailyAttendanceProps> = ({ query = '' }) => 
     
     try {
       const url = query 
-        ? `https://nemmadi-dairy-farm.koyeb.app/api/sa-daily-attendance/${query}`
-        : 'https://nemmadi-dairy-farm.koyeb.app/api/sa-daily-attendance/';
+        ? `http://localhost:8000/api/sa-daily-attendance/${query}`
+        : 'http://localhost:8000/api/sa-daily-attendance/';
       
       const res = await fetch(url, {
         headers: { 
@@ -117,7 +129,7 @@ const SADailyAttendance: React.FC<SADailyAttendanceProps> = ({ query = '' }) => 
     if (!user?.token) return null;
     
     try {
-      const res = await fetch('https://nemmadi-dairy-farm.koyeb.app/api/sa-daily-attendance/recognize/', {
+      const res = await fetch('http://localhost:8000/api/sa-daily-attendance/recognize/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -150,10 +162,9 @@ const SADailyAttendance: React.FC<SADailyAttendanceProps> = ({ query = '' }) => 
   const captureAndVerify = async () => {
     setCapturing(true);
     setError('');
-    setAntiSpoofing(true);  // Activate anti-spoofing measures
+    setAntiSpoofing(true);
     setChallenge(generateChallenge());
     
-    // Wait 2 seconds to ensure user sees challenge
     await new Promise(resolve => setTimeout(resolve, 2000));
     
     const imageSrc = webcamRef.current?.getScreenshot();
@@ -167,17 +178,15 @@ const SADailyAttendance: React.FC<SADailyAttendanceProps> = ({ query = '' }) => 
       const employees = await recognizeFace(imageSrc);
       if (!employees || employees.length === 0) return;
       
-      // Handle multiple matches (like twins)
       if (employees.length > 1) {
         setMatchedEmployees(employees);
-        setSelectedEmployee(employees[0]); // Default to first match
+        setSelectedEmployee(employees[0]);
         return;
       }
       
       const employee = employees[0];
       setRecognized(employee);
 
-      // Check for existing attendance for today
       const today = new Date().toISOString().split('T')[0];
       const exists = records.some(r => 
         r.employee_id === employee.id && r.date === today
@@ -192,7 +201,10 @@ const SADailyAttendance: React.FC<SADailyAttendanceProps> = ({ query = '' }) => 
       if (cameraMode === 'in') {
         const now = new Date();
         const date = now.toISOString().split('T')[0];
-        const in_time = now.toLocaleTimeString('en-GB', { hour12: false });
+        // Format time as HH:MM without seconds
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const in_time = `${hours}:${minutes}`;
         
         const tempRecord: AttendanceRecord = {
           id: Date.now(),
@@ -204,14 +216,15 @@ const SADailyAttendance: React.FC<SADailyAttendanceProps> = ({ query = '' }) => 
           out_time: null,
           worked_hours_str: null,
           payment: employee.payment_per_day,
-          remarks: 'Auto-marked via face recognition',
+          remarks: '',
         };
         
         setVerificationData({
           type: 'in',
           record: tempRecord,
           employee,
-          image: imageSrc
+          image: imageSrc,
+          remarks: tempRecord.remarks || '' // Initialize remarks
         });
       } else if (cameraMode === 'out' && currentAttendanceId) {
         const existingRecord = records.find(r => r.id === currentAttendanceId);
@@ -219,18 +232,27 @@ const SADailyAttendance: React.FC<SADailyAttendanceProps> = ({ query = '' }) => 
           throw new Error('Attendance record not found');
         }
         
-        // Verify employee matches attendance record
         if (existingRecord.employee_id !== employee.id) {
           setError('Employee does not match attendance record');
           setCapturing(false);
           return;
         }
         
+        // Format out time as HH:MM
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const out_time = `${hours}:${minutes}`;
+        
         setVerificationData({
           type: 'out',
-          record: existingRecord,
+          record: {
+            ...existingRecord,
+            out_time
+          },
           employee,
-          image: imageSrc
+          image: imageSrc,
+          remarks: existingRecord.remarks || '' // Initialize remarks
         });
       }
     } catch (err: any) {
@@ -262,7 +284,9 @@ const SADailyAttendance: React.FC<SADailyAttendanceProps> = ({ query = '' }) => 
     if (cameraMode === 'in') {
       const now = new Date();
       const date = now.toISOString().split('T')[0];
-      const in_time = now.toLocaleTimeString('en-GB', { hour12: false });
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const in_time = `${hours}:${minutes}`;
       
       const tempRecord: AttendanceRecord = {
         id: Date.now(),
@@ -274,7 +298,7 @@ const SADailyAttendance: React.FC<SADailyAttendanceProps> = ({ query = '' }) => 
         out_time: null,
         worked_hours_str: null,
         payment: selectedEmployee.payment_per_day,
-        remarks: 'Auto-marked via face recognition',
+        remarks: '',
       };
       
       setVerificationData({
@@ -282,7 +306,8 @@ const SADailyAttendance: React.FC<SADailyAttendanceProps> = ({ query = '' }) => 
         record: tempRecord,
         employee: selectedEmployee,
         matchedEmployees: matchedEmployees,
-        image: webcamRef.current?.getScreenshot() || ''
+        image: webcamRef.current?.getScreenshot() || '',
+        remarks: tempRecord.remarks || ''
       });
     } else if (cameraMode === 'out' && currentAttendanceId) {
       const existingRecord = records.find(r => r.id === currentAttendanceId);
@@ -304,7 +329,8 @@ const SADailyAttendance: React.FC<SADailyAttendanceProps> = ({ query = '' }) => 
         record: existingRecord,
         employee: selectedEmployee,
         matchedEmployees: matchedEmployees,
-        image: webcamRef.current?.getScreenshot() || ''
+        image: webcamRef.current?.getScreenshot() || '',
+        remarks: existingRecord.remarks || ''
       });
     }
   };
@@ -315,7 +341,7 @@ const SADailyAttendance: React.FC<SADailyAttendanceProps> = ({ query = '' }) => 
     setCapturing(true);
     try {
       if (verificationData.type === 'in') {
-        const res = await fetch('https://nemmadi-dairy-farm.koyeb.app/api/sa-daily-attendance/', {
+        const res = await fetch('http://localhost:8000/api/sa-daily-attendance/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -328,7 +354,7 @@ const SADailyAttendance: React.FC<SADailyAttendanceProps> = ({ query = '' }) => 
             designation: verificationData.record.designation,
             in_time: verificationData.record.in_time,
             payment: verificationData.record.payment,
-            remarks: verificationData.record.remarks,
+            remarks: verificationData.remarks || verificationData.record.remarks,
           }),
         });
 
@@ -341,17 +367,21 @@ const SADailyAttendance: React.FC<SADailyAttendanceProps> = ({ query = '' }) => 
         setRecords(prev => [newRecord, ...prev]);
         toast.success(`Attendance marked IN for ${newRecord.staff_name}`);
       } else if (verificationData.type === 'out') {
-        const res = await fetch(
-          `https://nemmadi-dairy-farm.koyeb.app/api/sa-daily-attendance/${verificationData.record.id}/mark-out/`,
-          {
-            method: 'PATCH',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${user.token}`
-            },
-            body: JSON.stringify({ image: verificationData.image }),
-          }
-        );
+      const res = await fetch(
+        `http://localhost:8000/api/sa-daily-attendance/${verificationData.record.id}/mark-out/`,
+        {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${user.token}`
+          },
+          body: JSON.stringify({ 
+            image: verificationData.image,
+            remarks: verificationData.remarks,
+            out_time: verificationData.record.out_time // Add this line
+          }),
+        }
+      );
 
         if (!res.ok) {
           const errorData = await res.json();
@@ -372,6 +402,15 @@ const SADailyAttendance: React.FC<SADailyAttendanceProps> = ({ query = '' }) => 
       setCurrentAttendanceId(null);
       setCameraMode('none');
     }
+  };
+
+  const handleRemarksChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    if (!verificationData) return;
+    
+    setVerificationData({
+      ...verificationData,
+      remarks: e.target.value
+    });
   };
 
   const cancelVerification = () => {
@@ -404,7 +443,7 @@ const SADailyAttendance: React.FC<SADailyAttendanceProps> = ({ query = '' }) => 
         return;
       }
       
-      let url = 'https://nemmadi-dairy-farm.koyeb.app/api/sa-daily-attendance/export/';
+      let url = 'http://localhost:8000/api/sa-daily-attendance/export/';
       const params = new URLSearchParams();
       
       if (user.role === 'admin') {
@@ -781,13 +820,23 @@ const SADailyAttendance: React.FC<SADailyAttendanceProps> = ({ query = '' }) => 
                   <span className="w-32 font-medium">Time:</span>
                   <span>
                     {verificationData.type === 'in'
-                      ? verificationData.record.in_time
-                      : new Date().toLocaleTimeString('en-GB', { hour12: false })}
+                      ? formatTime(verificationData.record.in_time)
+                      : formatTime(verificationData.record.out_time)}
                   </span>
                 </div>
-                <div className="flex flex-col sm:flex-row">
-                  <span className="w-32 font-medium">Remarks:</span>
-                  <span>{verificationData.record.remarks || '-'}</span>
+                
+                {/* Remarks Textarea */}
+                <div className="mt-4">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Remarks (Optional)
+                  </label>
+                  <textarea
+                    value={verificationData.remarks}
+                    onChange={handleRemarksChange}
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    rows={3}
+                    placeholder="Add any additional remarks..."
+                  />
                 </div>
               </div>
               
@@ -911,14 +960,14 @@ const SADailyAttendance: React.FC<SADailyAttendanceProps> = ({ query = '' }) => 
                       <td className="px-4 py-3">
                         <div className="flex items-center">
                           <Clock className="w-4 h-4 text-gray-500 mr-2" />
-                          <span className="text-sm text-gray-900">{record.in_time}</span>
+                          <span className="text-sm text-gray-900">{formatTime(record.in_time)}</span>
                         </div>
                       </td>
                       <td className="px-4 py-3">
                         {record.out_time ? (
                           <div className="flex items-center">
                             <Clock className="w-4 h-4 text-gray-500 mr-2" />
-                            <span className="text-sm text-gray-900">{record.out_time}</span>
+                            <span className="text-sm text-gray-900">{formatTime(record.out_time)}</span>
                           </div>
                         ) : (
                           <span className="text-gray-400 italic">-</span>
@@ -1017,7 +1066,7 @@ const SADailyAttendance: React.FC<SADailyAttendanceProps> = ({ query = '' }) => 
                           <div className="ml-3">
                             <h3 className="text-xs font-semibold text-gray-500 uppercase">IN Time</h3>
                             <p className="text-sm font-medium text-gray-900">
-                              {record.in_time}
+                              {formatTime(record.in_time)}
                             </p>
                           </div>
                         </div>
@@ -1027,7 +1076,7 @@ const SADailyAttendance: React.FC<SADailyAttendanceProps> = ({ query = '' }) => 
                           <div className="ml-3">
                             <h3 className="text-xs font-semibold text-gray-500 uppercase">OUT Time</h3>
                             <p className="text-sm font-medium text-gray-900">
-                              {record.out_time || '-'}
+                              {formatTime(record.out_time) || '-'}
                             </p>
                           </div>
                         </div>
