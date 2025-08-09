@@ -408,7 +408,7 @@ const Header: React.FC = () => {
     
     try {
       const response = await axios.get(
-        'http://localhost:8000/api/notifications/', 
+        'https://nemmadi-dairy-farm.koyeb.app/api/notifications/', 
         {
           headers: {
             Authorization: `Bearer ${user.token}`
@@ -442,7 +442,7 @@ const Header: React.FC = () => {
       }
 
       const response = await axios.get(
-        'http://localhost:8000/api/upcoming-events/', 
+        'https://nemmadi-dairy-farm.koyeb.app/api/upcoming-events/', 
         {
           headers: {
             Authorization: `Bearer ${user.token}`
